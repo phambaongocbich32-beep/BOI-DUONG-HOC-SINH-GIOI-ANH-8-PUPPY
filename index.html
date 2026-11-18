@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elite English 8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: nền navy sâu, chữ ngà, điểm nhấn vàng gold; thanh điều hướng cố định, nội dung rộng 1080px */
+:root {
+  --bg: #161b2e;
+  --bg-2: #1b2138;
+  --panel: #212843;
+  --panel-2: #29314f;
+  --line: rgba(201, 171, 110, .22);
+  --gold: #c9ab6e;
+  --gold-2: #e6d3a3;
+  --ivory: #e9e4d6;
+  --mute: #a5adc2;
+  --ok: #7fcfaa;
+  --bad: #e99b9b;
+  --blue: #9bb4e8;
+  --display: "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
+  --body: "Be Vietnam Pro", "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ivory); font-family: var(--body);
+  font-size: 16px; line-height: 1.65; min-height: 100%;
+  background-image:
+    radial-gradient(900px 420px at 85% -10%, rgba(201,171,110,.08), transparent 60%),
+    radial-gradient(700px 400px at -10% 10%, rgba(110,135,200,.09), transparent 60%),
+    linear-gradient(180deg, #181e33 0%, #161b2e 100%);
+  background-attachment: fixed;
+}
+h1, h2, h3, h4, h5 { font-family: var(--display); font-weight: 700; margin: 0; line-height: 1.2; text-wrap: balance; letter-spacing: .01em; }
+h1 { font-size: clamp(2.3rem, 5.4vw, 3.9rem); line-height: 1.05; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); color: var(--gold-2); }
+h3 { font-size: 1.5rem; color: var(--gold-2); }
+h4 { font-size: 1.25rem; color: var(--gold); margin: 22px 0 8px; }
+h5 { font-size: 1.15rem; color: var(--gold); margin-bottom: 6px; letter-spacing: .06em; }
+p { margin: 0 0 10px; }
+a { color: var(--gold-2); }
+em { color: var(--gold-2); font-style: italic; }
+b, strong { font-weight: 600; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
+button { font-family: inherit; }
+
+/* ---------- Header ---------- */
+.top { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px); background: rgba(22,27,46,.9); border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1120px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 22px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ivory); flex: none; }
+.mark { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--gold); display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 1.25rem; color: var(--gold-2); background: radial-gradient(circle at 30% 25%, rgba(217,180,106,.28), transparent 70%); }
+.brand-t { line-height: 1.1; }
+.brand-t b { display: block; font-family: var(--display); font-size: 1.25rem; letter-spacing: .04em; }
+.brand-t small { color: var(--mute); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
+.nav { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { color: var(--mute); text-decoration: none; padding: 8px 14px; border-radius: 999px; font-weight: 500; font-size: .93rem; white-space: nowrap; border: 1px solid transparent; }
+.nav a:hover { color: var(--ivory); }
+.nav a.on { color: #1a1304; background: linear-gradient(135deg, var(--gold-2), var(--gold)); font-weight: 600; }
+
+main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 72px; }
+.foot { max-width: 1120px; margin: 0 auto; padding: 0 20px 40px; color: var(--mute); font-size: .82rem; border-top: 1px solid var(--line); padding-top: 20px; }
+
+/* ---------- Common ---------- */
+.eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .22em; font-size: .74rem; font-weight: 600; margin-bottom: 10px; }
+.rule { height: 1px; border: 0; background: linear-gradient(90deg, var(--gold), transparent); margin: 14px 0 22px; width: 160px; }
+.card { background: linear-gradient(180deg, var(--panel), #1d2339); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+.btn { appearance: none; border: 0; cursor: pointer; font-weight: 600; font-size: .95rem; padding: 11px 20px; border-radius: 999px; color: #1a1304; background: linear-gradient(135deg, var(--gold-2), var(--gold)); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: transform .15s, box-shadow .15s; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(217,180,106,.3); }
+.btn.ghost { background: transparent; color: var(--gold-2); border: 1px solid var(--gold); }
+.btn.ghost:hover { background: rgba(217,180,106,.1); box-shadow: none; }
+.btn.sm { padding: 7px 14px; font-size: .85rem; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.muted { color: var(--mute); }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+.tab { appearance: none; border: 1px solid var(--line); background: rgba(255,255,255,.02); color: var(--mute); padding: 8px 16px; border-radius: 999px; cursor: pointer; font-size: .9rem; font-weight: 500; }
+.tab:hover { color: var(--ivory); border-color: var(--gold); }
+.tab.on { color: var(--gold-2); border-color: var(--gold); background: rgba(217,180,106,.14); }
+.tab small { color: var(--mute); margin-left: 6px; }
+
+/* ---------- Home ---------- */
+.hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 36px; align-items: center; padding: 14px 0 34px; }
+.hero h1 span { color: var(--gold-2); display: block; font-style: italic; }
+.hero p.lead { color: var(--mute); font-size: 1.08rem; max-width: 52ch; margin: 16px 0 24px; }
+.hero-card { padding: 26px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.stat b { display: block; font-family: var(--display); font-size: 2.5rem; color: var(--gold-2); line-height: 1; }
+.stat span { color: var(--mute); font-size: .82rem; }
+.cd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 22px 0 40px; }
+.cd-card { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 8px; }
+.cd-card .num { font-family: var(--display); font-size: 5rem; line-height: .8; color: rgba(217,180,106,.2); position: absolute; right: 14px; top: 12px; font-weight: 700; }
+.cd-card small { color: var(--gold); letter-spacing: .16em; text-transform: uppercase; font-weight: 600; font-size: .7rem; }
+.cd-card h3 { font-size: 1.55rem; max-width: 14ch; }
+.cd-card p { color: var(--mute); font-size: .92rem; margin: 0; }
+.cd-card .row { margin-top: auto; padding-top: 14px; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: s; margin: 18px 0 30px; }
+.step { padding: 18px; border-left: 2px solid var(--gold); background: rgba(255,255,255,.025); border-radius: 0 12px 12px 0; }
+.step b { font-family: var(--display); font-size: 1.2rem; color: var(--gold-2); display: block; }
+.step span { color: var(--mute); font-size: .88rem; }
+.scope { font-size: .9rem; color: var(--mute); }
+
+/* ---------- Vocabulary ---------- */
+.vtools { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: rgba(255,255,255,.02); }
+.seg button { appearance: none; border: 0; background: transparent; color: var(--mute); padding: 7px 16px; border-radius: 999px; cursor: pointer; font-size: .88rem; font-weight: 500; }
+.seg button.on { background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1304; font-weight: 600; }
+.search { background: rgba(255,255,255,.04); border: 1px solid var(--line); color: var(--ivory); padding: 9px 16px; border-radius: 999px; font: inherit; font-size: .92rem; min-width: 220px; }
+.search:focus { outline: none; border-color: var(--gold); }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+.vitem { padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.025); display: flex; flex-direction: column; gap: 2px; }
+.vitem b { font-family: var(--display); font-size: 1.28rem; color: var(--gold-2); font-weight: 700; }
+.vitem span { color: var(--mute); font-size: .9rem; }
+.vitem.known { border-color: rgba(95,217,163,.4); }
+.vcount { color: var(--mute); font-size: .88rem; }
+.flash-wrap { max-width: 560px; margin: 10px auto; }
+.flash { perspective: 1200px; cursor: pointer; height: 250px; }
+.flash-in { position: relative; width: 100%; height: 100%; transition: transform .55s cubic-bezier(.3,.7,.2,1); transform-style: preserve-3d; }
+.flash.flip .flash-in { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 18px; border: 1px solid var(--gold); display: grid; place-items: center; text-align: center; padding: 24px; background: linear-gradient(160deg, var(--panel-2), var(--bg-2)); box-shadow: 0 14px 40px rgba(0,0,0,.35), inset 0 0 0 6px rgba(217,180,106,.06); }
+.face.back { transform: rotateY(180deg); background: linear-gradient(160deg, #2c3659, var(--panel)); }
+.face .w { font-family: var(--display); font-size: clamp(1.9rem, 5vw, 2.7rem); color: var(--gold-2); font-weight: 700; }
+.face .t { font-size: 1.2rem; color: var(--ivory); }
+.face small { display: block; color: var(--mute); margin-top: 8px; letter-spacing: .12em; text-transform: uppercase; font-size: .7rem; }
+.flash-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.prog { height: 6px; background: rgba(255,255,255,.08); border-radius: 99px; overflow: hidden; margin: 14px 0; }
+.prog i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-2)); border-radius: 99px; transition: width .4s; }
+.vq { max-width: 640px; margin: 8px auto; }
+.vq .qword { font-family: var(--display); font-size: 2.3rem; color: var(--gold-2); font-weight: 700; margin: 6px 0 16px; }
+
+/* ---------- Grammar ---------- */
+.g-layout { display: grid; grid-template-columns: 250px 1fr; gap: 30px; align-items: start; }
+.toc { position: sticky; top: 84px; display: flex; flex-direction: column; gap: 2px; border-left: 1px solid var(--line); padding-left: 14px; max-height: calc(100vh - 110px); overflow: auto; }
+.tocb { appearance: none; border: 0; background: transparent; text-align: left; font-family: inherit; cursor: pointer; color: var(--mute); font-size: .86rem; padding: 6px 8px; border-radius: 6px; line-height: 1.35; }
+.tocb:hover { color: var(--gold-2); background: rgba(217,180,106,.08); }
+.gsec { margin-bottom: 20px; scroll-margin-top: 88px; }
+.gsec > h3 { margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.gsec ul.plain { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.gsec ul.plain li { padding-left: 16px; position: relative; }
+.gsec ul.plain li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+.eg { color: var(--blue); font-style: italic; margin: 6px 0 6px 2px; padding-left: 12px; border-left: 2px solid rgba(134,168,255,.45); }
+.eg em { color: var(--gold-2); font-weight: 600; }
+.formula { margin: 12px 0; padding: 14px 18px; text-align: center; font-weight: 600; background: linear-gradient(135deg, rgba(217,180,106,.16), rgba(217,180,106,.05)); border: 1px solid var(--gold); border-radius: 12px; color: var(--gold-2); }
+.formula small { font-weight: 400; color: var(--mute); }
+.note { margin: 14px 0; padding: 14px 18px; background: rgba(255,255,255,.04); border-left: 3px solid var(--gold); border-radius: 0 12px 12px 0; }
+.note .formula { margin: 10px 0; }
+.chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 8px; margin: 8px 0 12px; }
+.chip { display: flex; flex-direction: column; padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,.04); border: 1px solid rgba(217,180,106,.16); line-height: 1.35; }
+.chip b { color: var(--gold-2); font-weight: 600; }
+.chip i { color: var(--mute); font-size: .86rem; font-style: normal; }
+.twocol, .threecol { display: grid; gap: 14px; margin: 10px 0; }
+.twocol { grid-template-columns: repeat(2, 1fr); }
+.threecol { grid-template-columns: repeat(3, 1fr); }
+.mini { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.03); }
+.mini.big h5 { font-size: 1.7rem; letter-spacing: .1em; }
+.mini ul.plain { gap: 8px; }
+.mini .eg { font-size: .92rem; }
+
+/* ---------- Practice ---------- */
+.exlist { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.excard { text-align: left; cursor: pointer; color: inherit; font: inherit; display: flex; flex-direction: column; gap: 8px; transition: border-color .2s, transform .2s; }
+.excard:hover { border-color: var(--gold); transform: translateY(-2px); }
+.excard h4 { margin: 0; color: var(--gold-2); font-size: 1.4rem; }
+.excard p { color: var(--mute); font-size: .9rem; margin: 0; }
+.tag { display: inline-block; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--gold); width: fit-content; }
+.best { margin-top: auto; padding-top: 6px; font-size: .86rem; color: var(--mute); }
+.best b { color: var(--ok); }
+.special { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+.special .card { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.special p { color: var(--mute); margin: 0; font-size: .92rem; }
+
+.runhead { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.instr { color: var(--gold-2); font-weight: 500; margin: 8px 0 18px; padding: 12px 16px; border-left: 3px solid var(--gold); background: rgba(255,255,255,.03); border-radius: 0 10px 10px 0; }
+.q { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(217,180,106,.14); }
+.q:last-child { border-bottom: 0; }
+.n { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-2); display: grid; place-items: center; font-size: .82rem; font-weight: 600; }
+.qb { flex: 1; min-width: 0; }
+.qt { margin: 0 0 8px; font-size: 1.04rem; line-height: 1.9; }
+.gap { display: inline-block; min-width: 62px; padding: 0 8px; text-align: center; border-bottom: 2px solid var(--gold); color: var(--gold-2); font-weight: 600; margin: 0 2px; }
+.blank, .fixin, .area { font: inherit; color: var(--ivory); background: rgba(255,255,255,.06); border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; }
+.blank { width: 130px; text-align: center; font-weight: 600; color: var(--gold-2); }
+.fixin { width: 100%; padding: 9px 12px; }
+.area { width: 100%; padding: 14px; min-height: 270px; line-height: 1.8; resize: vertical; }
+.blank:focus, .fixin:focus, .area:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.09); }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+.opt { display: flex; gap: 10px; align-items: center; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; background: rgba(255,255,255,.025); transition: background .15s, border-color .15s; }
+.opt:hover { border-color: var(--gold); }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.opt .l { width: 24px; height: 24px; flex: none; border-radius: 50%; border: 1px solid var(--mute); display: grid; place-items: center; font-size: .75rem; color: var(--mute); }
+.opt.sel { border-color: var(--gold); background: rgba(217,180,106,.15); }
+.opt.sel .l { background: var(--gold); border-color: var(--gold); color: #1a1304; font-weight: 700; }
+.opt:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pills .opt { padding: 6px 16px; border-radius: 999px; }
+.crow { align-items: center; }
+.crow .w { font-family: var(--display); font-size: 1.4rem; color: var(--gold-2); min-width: 130px; font-weight: 700; }
+.q.good .n { background: var(--ok); border-color: var(--ok); color: #06231a; }
+.q.wrong .n { background: var(--bad); border-color: var(--bad); color: #330909; }
+.q.good .blank, .q.good .fixin { border-color: var(--ok); }
+.q.wrong .blank, .q.wrong .fixin { border-color: var(--bad); }
+.opt.right { border-color: var(--ok); background: rgba(95,217,163,.16); }
+.opt.right .l { background: var(--ok); border-color: var(--ok); color: #06231a; }
+.opt.miss { border-color: var(--bad); background: rgba(255,141,141,.14); }
+.opt.miss .l { background: var(--bad); border-color: var(--bad); color: #330909; }
+.opt.locked { cursor: default; }
+.fb { margin-top: 10px; padding: 10px 14px; border-radius: 10px; font-size: .92rem; border: 1px solid; }
+.fb.ok { border-color: rgba(95,217,163,.4); background: rgba(95,217,163,.07); }
+.fb.bad { border-color: rgba(255,141,141,.45); background: rgba(255,141,141,.07); }
+.fb .fbh { font-weight: 600; margin-bottom: 2px; }
+.fb.ok .fbh { color: var(--ok); }
+.fb.bad .fbh { color: var(--bad); }
+.fb p { margin: 2px 0; }
+.fb .why { color: var(--ivory); }
+.fb .why::before { content: "Giải thích: "; color: var(--gold); font-weight: 600; }
+.sticky-sub { position: sticky; bottom: 0; padding: 14px 0; margin-top: 8px; background: linear-gradient(180deg, transparent, var(--bg) 40%); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.score { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; margin-bottom: 20px; border-color: var(--gold); }
+.ring { width: 118px; height: 118px; position: relative; }
+.ring svg { transform: rotate(-90deg); }
+.ring .pct { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 2rem; font-weight: 700; color: var(--gold-2); }
+.score h3 { margin-bottom: 4px; }
+.score p { margin: 0 0 10px; color: var(--mute); }
+.note-box { background: rgba(134,168,255,.08); border: 1px solid rgba(134,168,255,.3); padding: 10px 14px; border-radius: 10px; font-size: .88rem; color: var(--mute); margin-bottom: 16px; }
+.pass-res { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+
+/* ---------- Progress ---------- */
+.ptable { width: 100%; border-collapse: collapse; font-size: .93rem; }
+.ptable th, .ptable td { text-align: left; padding: 10px 12px; border-bottom: 1px solid rgba(217,180,106,.14); }
+.ptable th { color: var(--gold); font-weight: 600; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.bars { display: grid; gap: 14px; }
+.bar-l { display: flex; justify-content: space-between; font-size: .9rem; margin-bottom: 4px; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .cd-grid, .steps { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .g-layout { grid-template-columns: 1fr; }
+  .toc { position: static; flex-direction: row; flex-wrap: wrap; border-left: 0; padding-left: 0; max-height: none; gap: 6px; }
+  .tocb { border: 1px solid var(--line); border-radius: 99px; }
+  .special { grid-template-columns: 1fr; }
+  .threecol { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .top-in { padding: 8px 14px; gap: 10px; }
+  .brand-t small { display: none; }
+  main { padding: 22px 16px 60px; }
+  .twocol { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .score { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat b { font-size: 2rem; }
+  .card { padding: 16px; }
+  .crow { flex-wrap: wrap; }
+  .search { min-width: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#home"><span class="mark">E8</span><span class="brand-t"><b>Elite English 8</b><small>Bồi dưỡng học sinh giỏi</small></span></a>
+    <nav class="nav" id="nav">
+      <a href="#home" data-r="home">Trang chủ</a>
+      <a href="#vocab" data-r="vocab">Từ vựng</a>
+      <a href="#grammar" data-r="grammar">Ngữ pháp</a>
+      <a href="#practice" data-r="practice">Luyện tập</a>
+      <a href="#progress" data-r="progress">Tiến độ</a>
+    </nav>
+  </div>
+</header>
+<main id="app"></main>
+<footer class="foot">Nội dung được biên soạn lại theo sách <i>Bồi dưỡng học sinh giỏi Tiếng Anh lớp 8 – Global Success</i>, dùng cho mục đích học tập. Điểm số và tiến độ được lưu ngay trên trình duyệt của bạn.</footer>
+<script>
+/* Từ vựng theo từng chuyên đề — lấy từ sách "Bồi dưỡng học sinh giỏi tiếng Anh lớp 8 – Global Success" */
+const VOCAB = [
+  {
+    id: "v4a", cd: 4, name: "Động từ + V-ing", hint: "Những động từ theo sau bởi V-ing",
+    items: [
+      ["admit", "thú nhận"], ["anticipate", "liệu trước, lường trước"], ["avoid", "tránh"],
+      ["appreciate", "cảm kích"], ["consider", "xem xét"], ["delay", "hoãn lại"],
+      ["defer", "trì hoãn"], ["deny", "phủ nhận"], ["hate / detest", "ghét"],
+      ["dislike", "không thích"], ["dread", "sợ, kinh sợ"], ["fancy", "mê thích"],
+      ["enjoy", "thích"], ["imagine", "tưởng tượng"], ["mind", "phiền"],
+      ["miss", "lỡ, nhớ"], ["mention", "đề cập"], ["pardon", "tha thứ, tha lỗi"],
+      ["prevent", "ngăn ngừa, ngăn cản"], ["postpone", "hoãn lại"], ["practice", "thực hành"],
+      ["propose / suggest", "đề nghị, đề xuất"], ["quit", "từ bỏ"], ["involve", "liên quan"],
+      ["keep", "giữ, tiếp tục"], ["discuss", "thảo luận"], ["feel like", "muốn"],
+      ["recollect", "nhớ lại"], ["recall", "gợi nhớ"], ["resent", "không bằng lòng"],
+      ["resume", "tiếp tục"], ["resist", "kháng cự, ngăn cản"], ["risk", "mạo hiểm"],
+      ["understand", "hiểu"], ["finish", "hoàn thành"], ["stop", "dừng"],
+      ["begin / start", "bắt đầu"]
+    ]
+  },
+  {
+    id: "v4b", cd: 4, name: "Tính từ + giới từ + V-ing", hint: "Adjective + preposition + gerund",
+    items: [
+      ["proud of", "tự hào về"], ["afraid of", "sợ, e ngại về"], ["ashamed of", "xấu hổ về"],
+      ["aware of", "nhận thức về"], ["capable of", "có khả năng"], ["confident of", "tự tin"],
+      ["conscious of", "có ý thức về"], ["doubtful of", "nghi ngờ"], ["envious of", "ghen tị"],
+      ["kind of", "kiểu như là"], ["busy with", "bận rộn với"], ["disappointed with", "thất vọng với"],
+      ["scared of", "sợ"], ["typical of", "điển hình"], ["bad for", "xấu cho"],
+      ["good for", "tốt cho"], ["greedy for", "tham lam"], ["ready for", "sẵn sàng"],
+      ["successful in", "thành công trong"], ["engaged in", "tham dự, liên quan"],
+      ["anxious about", "lo lắng về"], ["furious about", "tức giận về"], ["impressed with", "ấn tượng với"]
+    ]
+  },
+  {
+    id: "v4c", cd: 4, name: "Danh từ + giới từ + V-ing / N", hint: "Noun + preposition + gerund / N",
+    items: [
+      ["danger for", "nguy hiểm"], ["regardless of", "cho dù"], ["according to", "theo như"],
+      ["attention to", "quan tâm, chú ý"], ["contribution to", "đóng góp"], ["devotion to", "cống hiến"],
+      ["thanks to", "nhờ có"], ["reaction to", "phản ứng"], ["demand for", "nhu cầu"],
+      ["fine for", "phạt"], ["battle against", "trận chiến chống lại"], ["enthusiasm for", "sự nhiệt tình"],
+      ["belief in", "niềm tin vào"], ["decline in", "sự giảm về"], ["interest in", "sự thích thú, quan tâm"],
+      ["increase in", "sự tăng về"], ["focus / concentrate on", "tập trung vào"],
+      ["passion / love for", "niềm say mê"], ["delight in", "vui thích"]
+    ]
+  },
+  {
+    id: "v4d", cd: 4, name: "Động từ + giới từ + V-ing", hint: "Verb + preposition + gerund",
+    items: [
+      ["apologize (to sb) for", "xin lỗi (ai đó)"], ["accuse sb of", "buộc tội ai"],
+      ["insist on", "khăng khăng, cố nài"], ["congratulate sb on", "chúc mừng ai về…"],
+      ["approve / disapprove of", "ủng hộ / không ủng hộ"], ["look forward to", "trông mong, chờ đợi"],
+      ["dream of", "mơ ước"], ["succeed in", "thành công"], ["object to", "phản đối"],
+      ["suspect sb of", "nghi ngờ"]
+    ]
+  },
+  {
+    id: "v4e", cd: 4, name: "Tính từ + to V", hint: "Những tính từ theo sau bởi động từ nguyên mẫu",
+    items: [
+      ["able", "có thể"], ["unable", "không thể"], ["happy", "hạnh phúc, vui vẻ"],
+      ["delighted", "vui vẻ"], ["easy", "dễ"], ["lovely", "đáng yêu"], ["glad", "vui vẻ"],
+      ["sorry", "cảm thấy có lỗi, xin lỗi"], ["eager", "háo hức"], ["amazed", "ngạc nhiên"],
+      ["pleased", "hài lòng"], ["disappointed", "thất vọng"], ["surprised", "ngạc nhiên"],
+      ["willing", "sẵn lòng"], ["certain", "chắc chắn"]
+    ]
+  },
+  {
+    id: "v4f", cd: 4, name: "Động từ đổi nghĩa", hint: "V + to V và V + V-ing khác nghĩa nhau",
+    items: [
+      ["need to V", "cần phải làm gì (chủ động)"], ["need V-ing", "cần được làm gì (bị động)"],
+      ["stop to V", "dừng lại để làm việc khác"], ["stop V-ing", "dừng hẳn việc gì đó"],
+      ["remember / forget / regret + to V", "nhớ / quên / tiếc sẽ phải làm gì (hiện tại, tương lai)"],
+      ["remember / forget / regret + V-ing", "nhớ / quên / tiếc đã làm gì (quá khứ)"],
+      ["try to V", "cố gắng làm gì"], ["try V-ing", "thử làm gì"],
+      ["go on to V", "làm / nói việc gì khác"], ["go on V-ing", "tiếp tục làm cùng một việc"],
+      ["mean to V", "dự định làm gì đó"], ["mean V-ing", "bao gồm, bao hàm, có nghĩa là"],
+      ["quit to V", "từ bỏ để làm gì khác"], ["quit V-ing", "từ bỏ hẳn"]
+    ]
+  },
+  {
+    id: "v5a", cd: 5, name: "Giới từ chỉ nơi chốn", hint: "Prepositions of place",
+    items: [
+      ["on", "bên trên (có tiếp xúc)"], ["above", "phía trên (không tiếp xúc)"], ["under", "bên dưới"],
+      ["below", "phía dưới (không tiếp xúc)"], ["in front of", "phía trước"], ["behind", "phía sau"],
+      ["up", "lên trên"], ["down", "xuống dưới"], ["out of", "ra khỏi"], ["into", "vào trong"],
+      ["onto", "lên trên"], ["between", "giữa (2 người / vật)"], ["among", "giữa (3 người / vật trở lên)"],
+      ["opposite", "đối diện"], ["to the right / left of sth", "ở bên phải / bên trái của …"],
+      ["along", "dọc theo"], ["around", "quanh"], ["across", "băng qua"], ["past", "ngang qua"],
+      ["through", "xuyên qua"], ["towards", "về phía, về hướng"], ["near", "gần"]
+    ]
+  },
+  {
+    id: "v5b", cd: 5, name: "Giới từ chỉ thời gian", hint: "Prepositions of time",
+    items: [
+      ["since + mốc thời gian", "kể từ khi"], ["for + khoảng thời gian", "trong khoảng"],
+      ["until / till", "mãi cho đến khi"], ["from … to", "từ … đến"], ["during", "trong suốt một giai đoạn"],
+      ["by + thời gian", "vào lúc (không muộn hơn)"], ["before", "trước khi"], ["after", "sau khi"],
+      ["past", "hơn (giờ)"], ["to", "kém (giờ)"]
+    ]
+  },
+  {
+    id: "v6", cd: 6, name: "Lượng từ", hint: "Quantifiers",
+    items: [
+      ["some + Ns / UN", "một vài, một ít (câu khẳng định, lời mời, đề nghị)"],
+      ["any + Ns / UN", "nào (câu phủ định, nghi vấn); bất kì (câu khẳng định)"],
+      ["few + Ns", "có / còn ít, không đủ dùng"], ["a few + Ns", "có / còn ít, đủ dùng"],
+      ["little + UN", "có / còn ít, không đủ dùng"], ["a little + UN", "có / còn ít, đủ dùng"],
+      ["many + Ns", "nhiều (thường dùng câu phủ định, nghi vấn)"],
+      ["much + UN", "nhiều (thường dùng câu phủ định, nghi vấn)"],
+      ["a lot of / lots of + Ns / UN", "nhiều (thường dùng câu khẳng định)"],
+      ["each + N", "mỗi (nhấn mạnh từng cá thể)"], ["every + N", "mọi (nhấn mạnh tất cả)"],
+      ["a large / great number of + Ns", "một số lượng lớn"],
+      ["a large amount of + UN", "một lượng lớn"], ["a great deal of + UN", "một lượng lớn"],
+      ["plenty of + Ns / UN", "rất nhiều"],
+      ["all / most / some / no + (adj) + Ns / UN", "tất cả / hầu hết / một vài / không có (nói chung)"],
+      ["all of / most of / some of / none of + the / his / these …", "tất cả / hầu hết / một vài / không ai trong số … (xác định)"]
+    ]
+  }
+];
+
+</script>
+<script>
+/* Ngữ pháp theo chuyên đề — theo sách Global Success lớp 8 */
+const chips = (id) => {
+  const v = VOCAB.find(x => x.id === id);
+  return `<div class="chips">${v.items.map(i => `<span class="chip"><b>${i[0]}</b><i>${i[1]}</i></span>`).join("")}</div>`;
+};
+const eg = (t) => `<p class="eg">E.g. ${t}</p>`;
+const fm = (t) => `<div class="formula">${t}</div>`;
+
+const GRAMMAR = [
+  {
+    cd: 4, en: "Gerunds and Infinitives", vi: "Danh động từ và động từ nguyên mẫu",
+    intro: "Chuyên đề này giúp phân biệt khi nào dùng V-ing, khi nào dùng to V, và những động từ đổi nghĩa tùy theo hình thức theo sau.",
+    sections: [
+      {
+        id: "g4-1", title: "I. Danh động từ (Gerunds) — Chức năng",
+        html: `
+        <ul class="plain">
+          <li><b>Làm chủ ngữ trong câu</b>${eg("<em>Reading comic books</em> is her hobby.")}</li>
+          <li><b>Làm tân ngữ</b>${eg("Anna denied <em>breaking</em> her mother's vase.")}</li>
+          <li><b>Làm bổ ngữ</b>${eg("My habit is <em>feeding</em> fish whenever I'm sad.")}</li>
+          <li><b>Làm ngữ đồng vị</b>${eg("Her hobby, <em>playing the piano</em>, gives her a pleasure.")}</li>
+          <li><b>Làm danh từ ghép</b>${eg("train-spotting, child-bearing, …")}</li>
+        </ul>`
+      },
+      {
+        id: "g4-2", title: "Những động từ theo sau bởi V-ing",
+        html: `
+        <p>Học thuộc nhóm động từ này: sau chúng luôn là <b>V-ing</b>.</p>
+        ${chips("v4a")}
+        <div class="note"><b>Chú ý:</b> <em>excuse, forgive, pardon, prevent</em> không trực tiếp theo sau bởi danh động từ mà theo sau bởi:
+          ${fm("Possessive adjective / pronoun + danh động từ &nbsp;hoặc&nbsp; pronoun + preposition + danh động từ")}
+          <em>Appreciate</em> thường theo sau bởi tính từ sở hữu hoặc danh từ ở dạng bị động.</div>`
+      },
+      {
+        id: "g4-3", title: "Danh động từ theo sau một số giới từ",
+        html: `
+        <p>Sau giới từ, động từ luôn ở dạng <b>V-ing</b>.</p>
+        <h4>Adjective + preposition + gerund</h4>${chips("v4b")}
+        <h4>Noun + preposition + gerund / N</h4>${chips("v4c")}
+        <h4>Verb + preposition + gerund</h4>${chips("v4d")}
+        ${eg("She is <em>proud of passing</em> the exam. &nbsp;·&nbsp; I <em>look forward to meeting</em> you.")}`
+      },
+      {
+        id: "g4-4", title: "Chú ý: allow, permit, advise, recommend, encourage",
+        html: `
+        ${fm("allow / permit / advise / recommend / encourage + <b>object</b> + <b>to infinitive</b>")}
+        ${eg("His parents don't allow <em>him to go</em> out at night.")}
+        ${fm("allow / permit / advise / recommend / encourage + <b>gerund</b> (không có tân ngữ)")}
+        ${eg("He doesn't allow <em>going</em> out at night.")}
+        <div class="note">Có tân ngữ → <b>to V</b>. Không có tân ngữ → <b>V-ing</b>.</div>`
+      },
+      {
+        id: "g4-5", title: "V + to infinitive / gerund — nghĩa không đổi",
+        html: `
+        <div class="chips">
+          <span class="chip"><b>begin</b><i>bắt đầu</i></span><span class="chip"><b>start</b><i>bắt đầu</i></span>
+          <span class="chip"><b>love</b><i>yêu</i></span><span class="chip"><b>like</b><i>thích</i></span>
+          <span class="chip"><b>prefer</b><i>thích hơn</i></span><span class="chip"><b>hate</b><i>ghét</i></span>
+          <span class="chip"><b>bother</b><i>làm phiền</i></span>
+        </div>
+        ${eg("He likes listening to music. = He likes to listen to music.")}
+        <div class="note"><b>Chú ý:</b>
+          <ul class="plain">
+            <li>Không nên dùng: <s>It's beginning raining.</s> &nbsp;Nên nói: <b>It is beginning to rain.</b> (tránh hai âm -ing liền nhau)</li>
+            <li>Động từ nguyên mẫu thường mang ý nghĩa của một mục đích, một dự tính trong tương lai, trong khi danh động từ mang ý nghĩa một kinh nghiệm sẵn có.
+              ${eg("I like <em>to meet</em> the public.")}${eg("I like <em>meeting</em> the public.")}</li>
+          </ul>
+        </div>`
+      },
+      {
+        id: "g4-6", title: "V + to infinitive / gerund — nghĩa thay đổi",
+        html: `
+        <p>Cùng một động từ, nhưng <b>to V</b> và <b>V-ing</b> cho nghĩa khác nhau. Đây là phần hay ra trong đề học sinh giỏi.</p>
+        <div class="twocol">
+          <div class="mini"><h5>NEED</h5><p><b>Need to V:</b> cần phải làm gì (chủ động)</p><p><b>Need V-ing:</b> cần được làm gì (bị động)</p>${eg("She needs <em>to study</em> harder.")}${eg("These bikes need <em>repairing</em>.")}</div>
+          <div class="mini"><h5>STOP</h5><p><b>Stop to V:</b> dừng lại để làm việc khác</p><p><b>Stop V-ing:</b> dừng hẳn việc gì đó</p>${eg("Anna stopped <em>to sign</em> the contract.")}${eg("Alan stops <em>drinking</em> wine.")}</div>
+          <div class="mini"><h5>REGRET / REMEMBER / FORGET</h5><p><b>+ to V:</b> nhớ / quên / tiếc sẽ phải làm gì (ở hiện tại và tương lai)</p><p><b>+ V-ing:</b> nhớ / quên / tiếc đã làm gì (ở quá khứ)</p>${eg("You have to remember <em>to turn off</em> the light before going out of the room.")}${eg("She remembers <em>knocking</em> the door before leaving.")}</div>
+          <div class="mini"><h5>TRY</h5><p><b>Try to V:</b> cố gắng làm gì</p><p><b>Try V-ing:</b> thử làm gì</p>${eg("Emmy tries <em>to get</em> a well-paid job.")}${eg("Peter tries <em>using</em> chopsticks.")}</div>
+          <div class="mini"><h5>GO ON</h5><p><b>Go on to V:</b> làm / nói việc gì khác</p><p><b>Go on V-ing:</b> tiếp tục làm cùng một việc đó</p>${eg("The lecturer went on <em>talking</em> for two hours.")}${eg("After learning the culture of the UK, we went on <em>to learn</em> about its economy.")}</div>
+          <div class="mini"><h5>MEAN</h5><p><b>Mean to V</b> = intend to V: dự định làm gì đó</p><p><b>Mean V-ing</b> = involve: bao gồm, bao hàm, có nghĩa là</p>${eg("She means <em>to go</em> abroad.")}${eg("It means <em>researching</em> all fields.")}</div>
+          <div class="mini"><h5>QUIT</h5><p><b>Quit to V:</b> từ bỏ để làm gì khác</p><p><b>Quit V-ing:</b> từ bỏ hẳn</p>${eg("Mike quits <em>to work</em> here.")}${eg("Mike quits <em>working</em> here.")}</div>
+        </div>`
+      },
+      {
+        id: "g4-7", title: "2. Một số trường hợp khác — cấu trúc có to V / V-ing",
+        html: `
+        <h4>2.1. Trong một số cấu trúc sau</h4>
+        ${fm("It + be + Adj + to V &nbsp;=&nbsp; To V / V-ing + be + Adj")}
+        ${eg("It's interesting to learn English. = To learn English is interesting. = Learning English is interesting.")}
+        ${fm("S + be / get / look / seem / become … + <b>too</b> + Adj + (for O) + to V<br>S + V + <b>too</b> + Adv + (for O) + to V")}
+        ${eg("Milk is too hot for her to drink.")}
+        ${fm("S + be + Adj + <b>enough</b> (for O) + to V<br>S + V (thường) + Adv + <b>enough</b> (for O) + to V")}
+        ${eg("She is old enough to drive.")}
+        ${fm("It + costs / takes + O + time / money + to V …")}
+        ${eg("It takes me 3 hours to do my homework.")}
+        ${fm("S + V + Noun / Pronoun + to V")}
+        ${eg("Fiona doesn't have anything to do.")}
+        ${fm("S + find / think / believe + <b>it</b> + adj + to V")}
+        ${eg("Anna finds it difficult to learn Spanish.")}
+        <h4>2.2. Sau một số tính từ</h4>${chips("v4e")}
+        <h4>2.3. Sau một số từ để hỏi</h4>
+        ${fm("Verb + how / what / when / where / which + infinitive<br><small>(thường không dùng sau <i>why</i>)</small>")}
+        <p>Những động từ sử dụng công thức này là <b>ask, decide, discover, find out, forget, know, learn, remember, see, show + object, think, understand, want to know, wonder</b>.</p>
+        ${eg("She knows how to use it.")}
+        <h4>2.4. Chỉ mục đích</h4>
+        ${fm("S + V + <b>to V</b> &nbsp;|&nbsp; <b>in order (not) to V</b> &nbsp;|&nbsp; <b>so as (not) to V</b>")}
+        ${eg("She tried to work hard in order to get a better job.")}
+        <h4>2.5. Noun + to infinitive (replace a relative clause)</h4>
+        ${eg("She is always the last to leave.")}
+        <h4>2.6. S + V + đại từ bất định + to V</h4>
+        <p>(anywhere, anybody, anything, somebody, something, somewhere, nobody, nothing, nowhere, everything, everybody, everywhere)</p>
+        ${eg("I don't have anything to eat.")}
+        <h4>2.7. Thay cho một mệnh đề quan hệ</h4>
+        <p>Động từ nguyên thể có thể được sử dụng sau <b>the first, the second …, the last, the only</b> và thỉnh thoảng sau so sánh hơn nhất.</p>
+        ${eg("He loves parties; he is always the first who comes and the last who leaves. = He loves parties; he is always the first to come and the last to leave.")}`
+      }
+    ]
+  },
+  {
+    cd: 5, en: "Prepositions", vi: "Giới từ",
+    intro: "Giới từ chỉ nơi chốn và thời gian: phân biệt in – on – at và các giới từ thường gặp khác.",
+    sections: [
+      {
+        id: "g5-1", title: "I. Giới từ chỉ nơi chốn (Prepositions of place)",
+        html: `
+        <div class="threecol">
+          <div class="mini big"><h5>IN</h5><ul class="plain"><li>Trong khoảng không gian: <em>in the room</em>, …</li><li>Phương hướng: <em>in the east</em>, …</li><li>Phương tiện (car, taxi, helicopter)</li><li>Địa điểm (lớn): thành phố, đất nước, …</li></ul></div>
+          <div class="mini big"><h5>ON</h5><ul class="plain"><li>Trên bề mặt: <em>on the desk</em>, …</li><li>Phương tiện (bicycle, motorbike, train, bus, plane)</li><li>Cách diễn đạt khác: <em>on the left / right, on the floor</em>, …</li></ul></div>
+          <div class="mini big"><h5>AT</h5><ul class="plain"><li>Tại một địa điểm (nhỏ): <em>at the station, at the cinema</em>, …</li><li>Địa chỉ kèm số nhà: <em>at 25 Nguyen Hue Street</em>, …</li><li>Cách diễn đạt khác: <em>at the top / bottom, at the beginning / end</em>, …</li></ul></div>
+        </div>
+        <h4>4. Một số giới từ chỉ nơi chốn khác</h4>
+        ${chips("v5a")}`
+      },
+      {
+        id: "g5-2", title: "II. Giới từ chỉ thời gian (Prepositions of time)",
+        html: `
+        <div class="threecol">
+          <div class="mini big"><h5>IN</h5><ul class="plain"><li>Các buổi trong ngày: <em>in the morning / afternoon</em>, …</li><li>Khoảng thời gian: <em>in 10 seconds</em>, …</li><li>Tháng, mùa, năm, thập kỉ, thế kỉ: <em>in September, in summer, in 2023, in the 21st century, in the 1980s</em></li><li>Cách diễn đạt khác: <em>in the past, in the future</em></li></ul></div>
+          <div class="mini big"><h5>ON</h5><ul class="plain"><li>Các buổi trong ngày cụ thể: <em>on Monday morning</em>, …</li><li>Các thứ trong tuần: <em>on Monday</em>, …</li><li>Ngày (đặc biệt): <em>on Christmas day</em>, …</li><li>Cách diễn đạt khác: <em>on the weekend, on holiday, on vacation</em>, …</li></ul></div>
+          <div class="mini big"><h5>AT</h5><ul class="plain"><li>Giờ cụ thể: <em>at 9 p.m.</em>, …</li><li>Dịp lễ: <em>at Christmas</em>, …</li><li>Điểm thời gian: <em>at breakfast time, at lunchtime, at dinnertime, at noon, at night, at midnight, at dawn, at sunrise</em>, …</li><li>Cách diễn đạt khác: <em>at the weekend</em></li></ul></div>
+        </div>
+        <h4>4. Một số giới từ chỉ thời gian khác</h4>
+        ${chips("v5b")}`
+      }
+    ]
+  },
+  {
+    cd: 6, en: "Quantifiers", vi: "Lượng từ",
+    intro: "Quy ước trong sách: <b>Ns</b> = danh từ đếm được số nhiều, <b>UN</b> = danh từ không đếm được.",
+    sections: [
+      {
+        id: "g6-1", title: "1. Some – Any",
+        html: `
+        <div class="twocol">
+          <div class="mini"><h5>Some + Ns / UN</h5><ul class="plain"><li>Thường dùng trong câu <b>khẳng định</b></li><li>Dùng trong câu nghi vấn với ý nghĩa lời mời, lời đề nghị, câu hỏi lấy thông tin</li></ul>
+            ${eg("Would you like <em>some</em> …?")}${eg("Do you want <em>some</em> …?")}${eg("Can / Could I have <em>some</em> …?")}${eg("Where can I buy <em>some</em> …?")}</div>
+          <div class="mini"><h5>Any + Ns / UN</h5><ul class="plain"><li>Thường dùng trong câu <b>phủ định, nghi vấn</b></li><li>Dùng trong câu khẳng định với nghĩa “bất kì”</li></ul>
+            ${eg("She can wear <em>any</em> dress to the party.")}</div>
+        </div>`
+      },
+      {
+        id: "g6-2", title: "2. (A) few – (A) little",
+        html: `
+        <div class="twocol">
+          <div class="mini"><h5>Few + Ns</h5><ul class="plain"><li>Có / còn ít, <b>không đủ dùng</b></li><li>Có thể kết hợp dùng <em>only</em></li></ul></div>
+          <div class="mini"><h5>Little + UN</h5><ul class="plain"><li>Có / còn ít, <b>không đủ dùng</b></li><li>Có thể kết hợp cùng <em>very, so, too</em></li></ul></div>
+          <div class="mini"><h5>A few + Ns</h5><ul class="plain"><li>Có / còn ít, <b>đủ dùng</b></li><li>Có thể kết hợp cùng <em>only</em></li></ul></div>
+          <div class="mini"><h5>A little + UN</h5><ul class="plain"><li>Có / còn ít, <b>đủ dùng</b></li><li>Có thể kết hợp cùng <em>very, so, too</em></li></ul></div>
+        </div>
+        <div class="note">Có “a” → nghĩa tích cực (đủ dùng). Không có “a” → nghĩa tiêu cực (không đủ).</div>`
+      },
+      {
+        id: "g6-3", title: "3. Many – Much – A lot of / Lots of",
+        html: `
+        <div class="threecol">
+          <div class="mini"><h5>Many + Ns</h5><p>Có thể kết hợp cùng <em>very, so, too</em></p></div>
+          <div class="mini"><h5>Much + UN</h5><p>Có thể kết hợp cùng <em>very, so, too</em></p></div>
+          <div class="mini"><h5>A lot of / Lots of + Ns / UN</h5></div>
+        </div>
+        <div class="note">Thường thì <b>many / much</b> dùng trong câu <b>phủ định và nghi vấn</b>, còn <b>a lot of / lots of</b> thường dùng trong câu <b>khẳng định</b>.</div>`
+      },
+      {
+        id: "g6-4", title: "4. Each / Every",
+        html: `
+        <div class="twocol">
+          <div class="mini"><h5>Each + N</h5><ul class="plain"><li>Thường được sử dụng khi muốn nhấn mạnh vào <b>từng thành phần cá thể</b></li><li>Có thể kết hợp với <em>of</em></li></ul></div>
+          <div class="mini"><h5>Every + N</h5><ul class="plain"><li>Thường được sử dụng khi muốn nhấn mạnh vào <b>tất cả các thành phần</b> trong một nhóm hoặc tập hợp</li></ul></div>
+        </div>`
+      },
+      {
+        id: "g6-5", title: "5. All, some, no, most, all of, some of, none of, most of",
+        html: `
+        ${fm("<b>All, some, no, most</b> + adj + Ns / UN")}
+        ${fm("<b>All of, some of, none of, most of</b> + a / an / the / his / her / these / this …")}
+        <div class="note">Nói chung (không xác định) → không có “of”. Nói về nhóm cụ thể đã xác định (có the / his / these …) → có “of”.</div>`
+      },
+      {
+        id: "g6-6", title: "6. A large / great + number of, a large amount of, a great deal of …",
+        html: `
+        <div class="twocol">
+          <div class="mini"><h5>+ Ns</h5><ul class="plain"><li>A large number of</li><li>A great number of</li><li>Plenty of</li></ul></div>
+          <div class="mini"><h5>+ UN</h5><ul class="plain"><li>A large amount of</li><li>A great deal of</li><li>Plenty of</li></ul></div>
+        </div>`
+      }
+    ]
+  }
+];
+
+</script>
+<script>
+/* Bài tập theo sách + đáp án (phần Key trong sách) + giải thích chi tiết.
+   type: classify | fill | mcq | pick | fix | passage
+   Trong "q": ___ là chỗ trống. a = đáp án; alt = đáp án khác cũng chấp nhận. */
+const L = ["A", "B", "C", "D"];
+
+const EXERCISES = [
+  /* ============ CHUYÊN ĐỀ 4 ============ */
+  {
+    id: "e4-1", cd: 4, title: "Exercise 1", instr: "Put the verbs in the correct columns.", type: "classify",
+    cols: ["V-ing", "To V", "Both"],
+    items: [
+      { t: "admit", a: "V-ing", why: "Admit + V-ing (thú nhận đã làm gì). Admit nằm trong nhóm động từ chỉ theo sau bởi V-ing." },
+      { t: "enjoy", a: "V-ing", why: "Enjoy + V-ing (thích làm gì). Không bao giờ nói enjoy to V." },
+      { t: "stop", a: "Both", why: "Stop to V: dừng lại để làm việc khác. Stop V-ing: dừng hẳn việc đang làm. Hai dạng cho nghĩa khác nhau." },
+      { t: "tend", a: "To V", why: "Tend to V (có xu hướng làm gì). Tend chỉ đi với to V." },
+      { t: "begin", a: "Both", why: "Begin to V = begin V-ing, nghĩa không đổi. Lưu ý: tránh hai âm -ing liền nhau (It is beginning to rain)." },
+      { t: "practice", a: "V-ing", why: "Practice + V-ing (thực hành làm gì)." },
+      { t: "remember", a: "Both", why: "Remember to V: nhớ sẽ phải làm. Remember V-ing: nhớ đã làm (quá khứ). Nghĩa thay đổi." },
+      { t: "try", a: "Both", why: "Try to V: cố gắng làm gì. Try V-ing: thử làm gì." },
+      { t: "expect", a: "To V", why: "Expect to V (mong đợi, dự kiến làm gì)." },
+      { t: "love", a: "Both", why: "Love to V = love V-ing, nghĩa không đổi (nhóm begin, start, love, like, prefer, hate, bother)." },
+      { t: "delay", a: "V-ing", why: "Delay + V-ing (hoãn làm gì)." },
+      { t: "forget", a: "Both", why: "Forget to V: quên sẽ phải làm. Forget V-ing: quên là đã làm rồi. Nghĩa thay đổi." },
+      { t: "promise", a: "To V", why: "Promise to V (hứa làm gì)." },
+      { t: "instruct", a: "To V", why: "Instruct sb to V (hướng dẫn, chỉ thị ai làm gì)." },
+      { t: "need", a: "To V", why: "Need to V: cần phải làm gì (chủ động), đáp án sách xếp vào cột To V. Need V-ing chỉ dùng với nghĩa bị động (cần được làm), ví dụ: These bikes need repairing." },
+      { t: "risk", a: "V-ing", why: "Risk + V-ing (liều làm gì)." },
+      { t: "miss", a: "V-ing", why: "Miss + V-ing (lỡ, nhớ đã không làm được gì)." },
+      { t: "pretend", a: "To V", why: "Pretend to V (giả vờ làm gì)." },
+      { t: "would like", a: "To V", why: "Would like to V (muốn làm gì). Khác với like + V-ing." },
+      { t: "mean", a: "Both", why: "Mean to V = intend to V (dự định). Mean V-ing = involve (bao gồm, có nghĩa là)." }
+    ]
+  },
+  {
+    id: "e4-2", cd: 4, title: "Exercise 2", instr: "Give the correct form of the word in brackets.", type: "fill",
+    items: [
+      { q: "I always avoid (eat) ___ fast food because it's not good for my health.", a: ["eating"], why: "Avoid + V-ing → eating." },
+      { q: "He denied (steal) ___ the money, but the evidence was clear.", a: ["stealing"], why: "Deny + V-ing → stealing (phủ nhận đã lấy trộm)." },
+      { q: "She is ashamed of (lie) ___ to her parents about her grades.", a: ["lying"], why: "Sau giới từ of phải dùng V-ing → lying. (Tính từ + giới từ + gerund: ashamed of.)" },
+      { q: "Sarah has a passion for (paint) ___ landscapes; she spends hours in her studio every day.", a: ["painting"], why: "Danh từ + giới từ + V-ing: passion for + V-ing → painting." },
+      { q: "They have trouble (understand) ___ the instructions without proper guidance.", a: ["understanding"], why: "Have trouble + V-ing (gặp khó khăn khi làm gì) → understanding." },
+      { q: "As a tour guide, he gets acquainted with (show) ___ tourists around historical landmarks.", a: ["showing"], why: "Sau giới từ with phải là V-ing → showing." },
+      { q: "She is willing (help) ___ her neighbors with their groceries whenever they need it.", a: ["to help"], why: "Tính từ willing + to V → to help." },
+      { q: "After a long discussion, they finally agreed (postpone) ___ the meeting until next week.", a: ["to postpone"], why: "Agree + to V → to postpone." },
+      { q: "The teacher allows her students (use) ___ dictionaries during the exam.", a: ["to use"], why: "Allow + object + to V → to use. (Không có tân ngữ mới dùng allow + V-ing.)" },
+      { q: "Parents should encourage their children (pursue) ___ their interests and passions.", a: ["to pursue"], why: "Encourage + object + to V → to pursue." }
+    ]
+  },
+  {
+    id: "e4-3", cd: 4, title: "Exercise 3", instr: "Choose the correct answers.", type: "mcq",
+    items: [
+      { q: "She runs fast enough ___ the bus every morning.", o: ["catch", "to catch", "catching", "to catching"], a: 1, why: "Cấu trúc S + V + adv + enough + (for O) + to V → to catch." },
+      { q: "I remember ___ that place when I was a child.", o: ["visit", "to visit", "visiting", "to visiting"], a: 2, why: "Remember + V-ing: nhớ đã làm gì (quá khứ). Dấu hiệu: when I was a child." },
+      { q: "The plants need ___ regularly to stay healthy.", o: ["water", "to water", "watering", "to watering"], a: 2, why: "Chủ ngữ là vật (plants) được tưới, nên dùng need + V-ing với nghĩa bị động: cần được tưới." },
+      { q: "Our company aims ___ its market share by 10% this year.", o: ["increase", "to increase", "increasing", "to increasing"], a: 1, why: "Aim + to V (nhắm tới, đặt mục tiêu làm gì) → to increase." },
+      { q: "Despite numerous attempts, they couldn't ___ the problem.", o: ["solve", "to solve", "solving", "to solving"], a: 0, why: "Sau động từ khuyết thiếu (couldn't) dùng động từ nguyên mẫu không to → solve." },
+      { q: "After months of hard work, she finally succeeded in ___ the exam.", o: ["pass", "to pass", "passing", "to passing"], a: 2, why: "Succeed in + V-ing (động từ + giới từ + gerund) → passing." },
+      { q: "Due to bad weather, they had to ___ their outdoor picnic.", o: ["postpone", "to postpone", "postponing", "to postponing"], a: 0, why: "Had to + V nguyên mẫu không to → postpone. (had to là một cụm; to ở đây thuộc have to.)" },
+      { q: "Whenever he sees a stray animal, he can't help ___ sorry for it.", o: ["feel", "to feel", "feeling", "to feeling"], a: 2, why: "Can't help + V-ing = không thể không làm gì → feeling. (Bài viết tay trong sách chọn A là sai; đáp án sách là C.)" },
+      { q: "The athletes train hard ___ their performance for the upcoming competition.", o: ["improve", "to improve", "improving", "to improving"], a: 1, why: "To V chỉ mục đích (để làm gì) → to improve." },
+      { q: "She will try ___ her project before the deadline.", o: ["finish", "to finish", "finishing", "to finishing"], a: 1, why: "Try to V: cố gắng hoàn thành (có deadline nên là nỗ lực), khác try V-ing là thử làm." }
+    ]
+  },
+  {
+    id: "e4-4", cd: 4, title: "Exercise 4", instr: "Underline the correct answers.", type: "pick",
+    items: [
+      { q: "I often dream of ___ to exotic destinations and experiencing different cultures.", o: ["traveling", "to travel"], a: 0, why: "Dream of là động từ + giới từ, sau giới từ dùng V-ing → traveling. (Song song với experiencing.)" },
+      { q: "In order to ___ success, it's crucial to focus on your goals and work diligently towards them.", o: ["achieve", "achieving"], a: 0, why: "In order to + V nguyên mẫu → achieve." },
+      { q: "Despite being busy ___ for his exams, he still finds time to help his friends with their projects.", o: ["preparing", "prepare"], a: 0, why: "Be busy + V-ing (busy with + V-ing) → preparing." },
+      { q: "She would rather ___ in the mountains than lounge on the couch watching TV.", o: ["hike", "hiking"], a: 0, why: "Would rather + V nguyên mẫu không to → hike. (Song song với lounge.)" },
+      { q: "Despite the temptation, I refuse ___ my principles for personal gain.", o: ["compromising", "to compromise"], a: 1, why: "Refuse + to V → to compromise." },
+      { q: "The workload has become too overwhelming for him ___ alone.", o: ["handle", "to handle"], a: 1, why: "Cấu trúc too + adj + (for O) + to V → to handle." },
+      { q: "There's no point in ___ about things that are beyond our control.", o: ["to worry", "worrying"], a: 1, why: "There's no point in + V-ing (không có ích gì khi làm gì) → worrying. Sau giới từ in dùng V-ing." },
+      { q: "I want to ___ you on your recent promotion; it's well-deserved.", o: ["congratulating", "congratulate"], a: 1, why: "Want + to V, nên sau to là động từ nguyên mẫu → congratulate. (Congratulate sb on + V-ing/N là cấu trúc riêng.)" },
+      { q: "After a long day at work, I feel like ___ myself to a relaxing bubble bath.", o: ["to treat", "treating"], a: 1, why: "Feel like + V-ing (muốn làm gì) → treating." },
+      { q: "To improve his basketball skills, he practices ___ and shooting every day.", o: ["to dribble", "dribbling"], a: 1, why: "Practice + V-ing → dribbling. (Song song với shooting.)" }
+    ]
+  },
+  {
+    id: "e4-5", cd: 4, title: "Exercise 5", instr: "Find and correct the mistakes. Sửa lỗi ngay trong câu, rồi nhấn nộp bài.", type: "fix",
+    items: [
+      { q: "Remember to watering the plants before you leave for your trip.", a: ["Remember to water the plants before you leave for your trip."], why: "Remember to V: nhớ sẽ phải làm gì. Sau to là động từ nguyên mẫu: watering → to water (giữ nguyên to, sửa watering → water)." , key: "watering → to water" },
+      { q: "She arrived early so to as secure a good seat for the concert.", a: ["She arrived early so as to secure a good seat for the concert."], why: "Chỉ mục đích dùng so as (not) to V, không phải so to as: to as → as to.", key: "to as → as to" },
+      { q: "He submitted a formal request extend the deadline for his project.", a: ["He submitted a formal request to extend the deadline for his project."], why: "Danh từ + to V để chỉ mục đích (một lời yêu cầu để gia hạn): extend → to extend.", key: "extend → to extend" },
+      { q: "I look forward to meet you in person at the conference next week.", a: ["I look forward to meeting you in person at the conference next week."], why: "Look forward to + V-ing. Ở đây to là giới từ, không phải to của động từ nguyên mẫu: meet → meeting.", key: "meet → meeting" },
+      { q: "On a hot summer day, I fancy to take a dip in the pool to cool off.", a: ["On a hot summer day, I fancy taking a dip in the pool to cool off."], why: "Fancy + V-ing (mê thích, muốn làm gì): to take → taking.", key: "to take → taking" },
+      { q: "To improve her piano skills, she practices to play scales and arpeggios every day.", a: ["To improve her piano skills, she practices playing scales and arpeggios every day."], why: "Practice + V-ing: to play → playing.", key: "to play → playing" },
+      { q: "The school allows students bring their own laptops to class for note-taking.", a: ["The school allows students to bring their own laptops to class for note-taking."], why: "Allow + object (students) + to V: bring → to bring.", key: "bring → to bring" },
+      { q: "Despite his best efforts, he failed convince his boss to approve the budget increase.", a: ["Despite his best efforts, he failed to convince his boss to approve the budget increase."], why: "Fail + to V (không làm được gì): convince → to convince.", key: "convince → to convince" },
+      { q: "Children tend learning languages more easily than adults.", a: ["Children tend to learn languages more easily than adults."], why: "Tend + to V (có xu hướng): learning → to learn.", key: "learning → to learn" },
+      { q: "The teacher allows her students choosing their own research topics for the assignment.", a: ["The teacher allows her students to choose their own research topics for the assignment."], why: "Allow + object + to V: choosing → to choose.", key: "choosing → to choose" }
+    ]
+  },
+
+  /* ============ CHUYÊN ĐỀ 5 ============ */
+  {
+    id: "e5-1", cd: 5, title: "Exercise 1", instr: "Fill in the blanks with “in”, “on”, “at”.", type: "fill",
+    items: [
+      { q: "I usually have my coffee ___ breakfast time.", a: ["at"], why: "At + điểm thời gian: at breakfast time." },
+      { q: "The concert is scheduled ___ Friday.", a: ["on"], why: "On + thứ trong tuần: on Friday." },
+      { q: "We're going ___ vacation next month.", a: ["on"], why: "Cách diễn đạt đi nghỉ: on vacation / on holiday." },
+      { q: "The meeting will be held ___ Monday afternoon.", a: ["on"], why: "Buổi trong một ngày cụ thể dùng on: on Monday afternoon. (Buổi nói chung mới dùng in the afternoon.)" },
+      { q: "She always reads a book ___ bedtime.", a: ["at"], why: "At bedtime: điểm thời gian (giống at lunchtime, at dinnertime)." },
+      { q: "They celebrate their anniversary ___ October.", a: ["in"], why: "In + tháng: in October." },
+      { q: "Let's meet ___ noon for lunch.", a: ["at"], why: "At noon: điểm thời gian." },
+      { q: "I'll see you ___ night.", a: ["at"], why: "At night là cụm cố định (cũng như at midnight, at dawn)." },
+      { q: "The store is closed ___ Christmas day.", a: ["on"], why: "Ngày đặc biệt (có chữ day) dùng on: on Christmas day. Còn dịp lễ nói chung: at Christmas." },
+      { q: "He's busy in the morning but free ___ the afternoon.", a: ["in"], why: "In the morning / in the afternoon: các buổi trong ngày nói chung." }
+    ]
+  },
+  {
+    id: "e5-2", cd: 5, title: "Exercise 2", instr: "Choose the correct answers.", type: "mcq",
+    items: [
+      { q: "We're planning a trip to Europe in the summer ___ 2023.", o: ["in", "on", "of", "X"], a: 2, why: "The summer of 2023: of nối mùa với năm cụ thể." },
+      { q: "They usually go skiing ___ the winter months.", o: ["in", "on", "at", "X"], a: 0, why: "In + mùa / tháng: in the winter months." },
+      { q: "The meeting is scheduled ___ Monday morning.", o: ["in", "on", "at", "X"], a: 1, why: "On + buổi của ngày cụ thể: on Monday morning." },
+      { q: "She'll be away ___ vacation until next Friday.", o: ["between", "until", "on", "in"], a: 2, why: "Be away on vacation (đang đi nghỉ). Until đã có sẵn ở phía sau." },
+      { q: "I'll see you ___ 9 p.m for dinner.", o: ["in", "on", "at", "X"], a: 2, why: "At + giờ cụ thể: at 9 p.m." },
+      { q: "We've been friends ___ kindergarten.", o: ["for", "past", "since", "of"], a: 2, why: "Since + mốc thời gian (kindergarten là một thời điểm bắt đầu) → since." },
+      { q: "He's been studying ___ two hours.", o: ["for", "past", "since", "of"], a: 0, why: "For + khoảng thời gian (two hours) → for." },
+      { q: "The store will be open ___ 9 a.m to 5 p.m.", o: ["at", "of", "from", "until"], a: 2, why: "From … to: từ … đến → from." },
+      { q: "They met ___ their time at university.", o: ["for", "past", "since", "during"], a: 3, why: "During + giai đoạn (their time at university) → during." },
+      { q: "The concert starts ___ sunset, but I'll arrive before then.", o: ["at", "in", "on", "X"], a: 0, why: "At sunrise / at sunset: điểm thời gian trong ngày." }
+    ]
+  },
+  {
+    id: "e5-3", cd: 5, title: "Exercise 3", instr: "Circle the correct answers.", type: "pick",
+    items: [
+      { q: "My keys are ___ the room on the desk.", o: ["in", "on", "at"], a: 0, why: "In the room: trong một không gian. (On the desk là bề mặt.)" },
+      { q: "She prefers traveling ___ a car rather than taking the bus.", o: ["in", "on", "at"], a: 0, why: "Phương tiện car, taxi, helicopter dùng in." },
+      { q: "The restaurant we're meeting ___ is on Nguyen Hue Street.", o: ["in", "on", "at"], a: 2, why: "Meet at + địa điểm nhỏ, cụ thể (nhà hàng). Còn on Nguyen Hue Street là tên đường." },
+      { q: "The book I need is ___ the top shelf in the library.", o: ["in", "on", "at"], a: 1, why: "On the top shelf: trên bề mặt kệ, dùng on." },
+      { q: "We'll meet ___ the station to catch the train.", o: ["in", "on", "at"], a: 2, why: "At the station: địa điểm nhỏ (ga)." },
+      { q: "The conference is at the convention center ___ the east wing.", o: ["in", "on", "at"], a: 0, why: "In the east wing: trong khu nhà phía đông (không gian, phương hướng)." },
+      { q: "The painting ___ the wall in the living room is beautiful.", o: ["in", "on", "at"], a: 1, why: "On the wall: trên bề mặt tường." },
+      { q: "He's waiting for you at the cinema ___ the left side.", o: ["in", "on", "at"], a: 1, why: "On the left / on the right: cách diễn đạt cố định." },
+      { q: "The event will take place at the hotel ___ the conference room.", o: ["in", "on", "at"], a: 0, why: "In the conference room: bên trong một căn phòng." },
+      { q: "The vase ___ the table in the dining room is an antique.", o: ["in", "on", "at"], a: 1, why: "On the table: trên bề mặt bàn." }
+    ]
+  },
+  {
+    id: "e5-4", cd: 5, title: "Exercise 4", instr: "Find 6 mistakes in the following passage which relate to prepositions and correct them. Sửa trực tiếp trong đoạn văn bên dưới.", type: "passage",
+    text: "In a sunny Monday in July, I woke on 7:00 AM and decided to visit the park near my house. After a quick breakfast at the kitchen table, I put on my favorite T-shirt and shorts and headed out. At the park, I saw children playing above the swings and slides, while others were walking along the paved paths. I sat on a park bench in the shade of a large tree and enjoyed the peaceful atmosphere. In the afternoon, I walked with the nearby library to borrow a few books. On my way home, I stopped at the grocery store to buy some ingredients for dinner. On the time I got home, I was feeling tired but happy. I had spent a wonderful day enjoying the outdoors and relaxing in my neighborhood.",
+    errors: [
+      { wrong: "In a sunny Monday", right: "On a sunny Monday", why: "Ngày cụ thể trong tuần dùng on: On a sunny Monday.", test: (s) => s.includes("on a sunny monday") && !s.includes("in a sunny monday") },
+      { wrong: "woke on 7:00 AM", right: "woke up at 7:00 AM", why: "Woke up là cụm động từ (thức dậy), giờ cụ thể dùng at: woke up at 7:00 AM.", test: (s) => s.includes("woke up at 7:00") },
+      { wrong: "playing above the swings", right: "playing on the swings", why: "Chơi xích đu: on the swings. Above nghĩa là phía trên, không tiếp xúc.", test: (s) => s.includes("playing on the swings") && !s.includes("above the swings") },
+      { wrong: "bench in the shade", right: "bench under the shade", why: "Ngồi dưới bóng cây: under the shade of a large tree.", test: (s) => s.includes("under the shade") && !s.includes("in the shade") },
+      { wrong: "walked with the nearby library", right: "walked to the nearby library", why: "Đi bộ tới thư viện: walk to + nơi chốn.", test: (s) => s.includes("walked to the nearby library") && !s.includes("walked with") },
+      { wrong: "On the time I got home", right: "By the time I got home", why: "By the time + mệnh đề: vào lúc, tới khi. (by + thời gian: vào lúc)", test: (s) => s.includes("by the time i got home") && !s.includes("on the time") }
+    ]
+  },
+
+  /* ============ CHUYÊN ĐỀ 6 ============ */
+  {
+    id: "e6-1", cd: 6, title: "Exercise 1", instr: "Complete the following sentences with “some” or “any”.", type: "fill",
+    items: [
+      { q: "Would you like ___ tea with your breakfast?", a: ["some"], why: "Lời mời → some." },
+      { q: "Do you want ___ help carrying those groceries?", a: ["some"], why: "Lời đề nghị giúp đỡ → some." },
+      { q: "Can I have ___ sugar for my coffee, please?", a: ["some"], why: "Lời đề nghị, yêu cầu lịch sự (Can I have…?) → some." },
+      { q: "Where can I buy ___ fresh vegetables for dinner?", a: ["some"], why: "Câu hỏi lấy thông tin (Where can I buy …?) → some." },
+      { q: "She can wear ___ shoes to the casual event.", a: ["any"], why: "Câu khẳng định với nghĩa “bất kì” → any." },
+      { q: "I'm sorry, but we don't have ___ more tickets available for the concert.", a: ["any"], why: "Câu phủ định → any." },
+      { q: "Is there ___ milk left in the fridge?", a: ["any"], why: "Câu nghi vấn thông thường → any." },
+      { q: "Do you have ___ plans for the weekend?", a: ["any"], why: "Câu nghi vấn → any." },
+      { q: "Could you lend me ___ money until I get paid?", a: ["some"], why: "Lời đề nghị, nhờ vả (Could you…?) → some." },
+      { q: "___ student can join the after-school club regardless of their grade level.", a: ["any"], why: "Nghĩa “bất kì” (any + N số ít) → Any." }
+    ]
+  },
+  {
+    id: "e6-2", cd: 6, title: "Exercise 2", instr: "Choose the correct answers.", type: "mcq",
+    items: [
+      { q: "There are ___ apples left in the basket, so we need to buy more.", o: ["little", "a little", "few", "a few"], a: 3, alt: [2], why: "Apples là danh từ đếm được số nhiều → few / a few. Đáp án sách là D (a few). Chọn C (few: còn rất ít, không đủ) cũng hợp lý với ý “cần mua thêm”, nên bài vẫn tính đúng." },
+      { q: "She has ___ patience for people who are always late. She loses her temper.", o: ["little", "a little", "few", "a few"], a: 0, why: "Patience không đếm được → little / a little. Ý nghĩa tiêu cực (mất bình tĩnh, không đủ kiên nhẫn) → little." },
+      { q: "He has ___ friends because he's not very sociable.", o: ["little", "a little", "few", "a few"], a: 2, why: "Friends đếm được số nhiều. Nghĩa tiêu cực (vì không hòa đồng) → few." },
+      { q: "There's ___ milk left in the fridge, so we can't make a cake.", o: ["little", "a little", "few", "a few"], a: 0, why: "Milk không đếm được; không đủ làm bánh → little." },
+      { q: "Only ___ students passed the difficult exam.", o: ["little", "a little", "few", "a few"], a: 3, why: "Students đếm được số nhiều; only kết hợp được với a few: only a few students (chỉ một vài)." },
+      { q: "She has ___ time to finish her assignment before the deadline. Perhaps, she can't complete it.", o: ["little", "a little", "few", "a few"], a: 0, why: "Time không đếm được; vế sau “có thể không hoàn thành” → nghĩa tiêu cực → little." },
+      { q: "He has ___ opportunities to travel due to his busy work schedule.", o: ["little", "a little", "few", "a few"], a: 2, why: "Opportunities đếm được số nhiều; ít vì bận → few." },
+      { q: "There's only ___ sugar left in the jar, so we need to refill it.", o: ["little", "a little", "few", "a few"], a: 1, why: "Sugar không đếm được; only kết hợp với a little → only a little sugar." },
+      { q: "I have ___ books that I haven't read yet. I don't have to buy any more.", o: ["little", "a little", "few", "a few"], a: 3, why: "Books đếm được; “không cần mua thêm” → đủ để đọc → a few." },
+      { q: "She has ___ experience in public speaking, but she's willing to learn.", o: ["little", "a little", "few", "a few"], a: 0, alt: [1], why: "Experience không đếm được → little / a little. Đáp án sách là A (little: gần như chưa có kinh nghiệm). Chọn B (a little: có một chút) cũng hợp nghĩa nên bài vẫn tính đúng." }
+    ]
+  },
+  {
+    id: "e6-3", cd: 6, title: "Exercise 3", instr: "Underline the correct answers.", type: "pick",
+    items: [
+      { q: "A large ___ of students attended the lecture on climate change.", o: ["number", "amount"], a: 0, why: "Students đếm được → a large number of." },
+      { q: "A great ___ of volunteers showed up to help clean up the park.", o: ["number", "amount"], a: 0, why: "Volunteers đếm được → a great number of." },
+      { q: "___ of food was donated to the local food bank during the holiday season.", o: ["Plenty", "A lots"], a: 0, why: "Plenty of + Ns/UN. Không có dạng a lots of (đúng là a lot of / lots of)." },
+      { q: "A large ___ of money was invested in renewable energy projects.", o: ["deals", "amount"], a: 1, why: "Money không đếm được → a large amount of. (Deal chỉ dùng trong a great deal of, không thêm s.)" },
+      { q: "A great ___ of effort went into organizing the charity event.", o: ["deal", "number"], a: 0, why: "Effort không đếm được → a great deal of." },
+      { q: "There are plenty ___ opportunities for hiking and outdoor activities in the national park.", o: ["of", "for"], a: 0, why: "Plenty of + danh từ." },
+      { q: "___ the students in the class were excited about the upcoming field trip.", o: ["All", "All of"], a: 0, alt: [1], why: "Sách chọn All (all + the + N). All of the students cũng đúng ngữ pháp nên bài vẫn tính đúng." },
+      { q: "___ his friends are planning to attend the concert tonight.", o: ["Some", "Some of"], a: 1, why: "Sau có his (xác định) → some of + his friends. Không nói some his friends." },
+      { q: "___ the apples in the basket were ripe enough to eat.", o: ["None", "None of"], a: 1, why: "Sau có the (xác định) → none of the apples." },
+      { q: "___ her belongings were packed into boxes as she prepared to move to a new apartment.", o: ["Most", "Most of"], a: 1, why: "Sau có her (xác định) → most of her belongings." }
+    ]
+  },
+  {
+    id: "e6-4", cd: 6, title: "Exercise 4", instr: "Fill in the blanks with “every” or “each”.", type: "pick",
+    note: "Đề trong sách; phần đáp án của bài này bị cắt khỏi bản scan nên đáp án và giải thích do hệ thống bổ sung dựa trên quy tắc each / every.",
+    items: [
+      { q: "___ member of the team contributed ideas to the project.", o: ["Every", "Each"], a: 0, alt: [1], why: "Nhấn mạnh toàn bộ thành viên trong nhóm → every. Each cũng chấp nhận được nếu nghĩ đến từng người." },
+      { q: "___ flower in the garden bloomed beautifully in the spring.", o: ["Every", "Each"], a: 0, why: "Nói về tất cả các bông hoa trong vườn → every." },
+      { q: "___ item on the menu at the restaurant is carefully prepared by the chef.", o: ["Every", "Each"], a: 0, alt: [1], why: "Nhấn mạnh tất cả các món → every (each cũng được nếu nhấn từng món)." },
+      { q: "___ book on the shelf tells a different story.", o: ["Every", "Each"], a: 1, why: "Nhấn mạnh từng cuốn một, mỗi cuốn khác nhau → each." },
+      { q: "___ child in the daycare center receives individual attention from the caregivers.", o: ["Every", "Each"], a: 1, why: "Individual attention: chú ý đến từng cá nhân → each." },
+      { q: "___ drop of rain that fell from the sky added to the puddles on the ground.", o: ["Every", "Each"], a: 0, why: "Toàn bộ giọt mưa nói chung → every." },
+      { q: "___ guest at the party received a party favor as a token of appreciation.", o: ["Every", "Each"], a: 1, alt: [0], why: "Mỗi vị khách nhận một món quà (từng cá nhân) → each. Every cũng chấp nhận (tất cả khách đều nhận)." },
+      { q: "___ grain of sand on the beach has been shaped by the forces of nature.", o: ["Every", "Each"], a: 0, why: "Tất cả các hạt cát trên bãi biển → every." },
+      { q: "___ song on the album was written and performed by the artist.", o: ["Every", "Each"], a: 0, alt: [1], why: "Tất cả các bài hát trong album → every (each cũng được)." },
+      { q: "___ student in the classroom has their own desk and chair.", o: ["Every", "Each"], a: 1, alt: [0], why: "Mỗi học sinh có bàn ghế riêng (từng cá nhân) → each. Every cũng chấp nhận." }
+    ]
+  },
+  {
+    id: "e6-5", cd: 6, title: "Exercise 5", instr: "Underline the mistakes and correct them. Sửa lỗi ngay trong câu. Có thể có câu không sai.", type: "fix",
+    note: "Đề trong sách; phần đáp án của bài này bị cắt khỏi bản scan nên đáp án và giải thích do hệ thống bổ sung.",
+    items: [
+      { q: "I have not money left in my wallet.", a: ["I have no money left in my wallet.", "I do not have any money left in my wallet.", "I don't have any money left in my wallet.", "I haven't any money left in my wallet.", "I have not any money left in my wallet."], why: "Không dùng not + danh từ trực tiếp. Dùng no + N (I have no money) hoặc don't have any money.", key: "have not money → have no money" },
+      { q: "I have any books on Vietnamese history.", a: ["I have some books on Vietnamese history.", "I don't have any books on Vietnamese history.", "I do not have any books on Vietnamese history.", "I have a few books on Vietnamese history."], why: "Any thường dùng trong câu phủ định, nghi vấn. Câu khẳng định này dùng some (hoặc đổi thành phủ định).", key: "any → some" },
+      { q: "I love much kinds of music.", a: ["I love many kinds of music.", "I love all kinds of music.", "I love a lot of kinds of music.", "I love lots of kinds of music."], why: "Kinds đếm được số nhiều → many (không dùng much).", key: "much → many" },
+      { q: "Every person has their own unique strengths and weaknesses.", a: ["Every person has their own unique strengths and weaknesses.", "Every person has his or her own unique strengths and weaknesses."], why: "Câu này đúng, không cần sửa. Every + danh từ số ít (person) đi với động từ số ít (has); dùng their thay cho his or her là phổ biến.", key: "Câu đúng", noError: true },
+      { q: "I don't know many about Vietnamese culture.", a: ["I don't know much about Vietnamese culture.", "I don't know a lot about Vietnamese culture.", "I do not know much about Vietnamese culture."], why: "Về văn hóa (culture) dùng như danh từ không đếm được → much, không dùng many.", key: "many → much" },
+      { q: "No many people know how to speak Vietnamese fluently.", a: ["Not many people know how to speak Vietnamese fluently.", "Few people know how to speak Vietnamese fluently."], why: "Many + Ns bị phủ định bằng not many (không dùng no many). Hoặc dùng few people.", key: "No many → Not many" },
+      { q: "There are a lots of people at the concert.", a: ["There are lots of people at the concert.", "There are a lot of people at the concert."], why: "Chỉ có a lot of hoặc lots of. Không có a lots of.", key: "a lots of → lots of / a lot of" },
+      { q: "I only have a little minutes left to finish my work.", a: ["I only have a few minutes left to finish my work."], why: "Minutes đếm được số nhiều → a few (only a few minutes). A little chỉ dùng cho danh từ không đếm được.", key: "a little → a few" },
+      { q: "They put a great number of effort into planning their wedding.", a: ["They put a great deal of effort into planning their wedding.", "They put a great amount of effort into planning their wedding.", "They put a large amount of effort into planning their wedding.", "They put plenty of effort into planning their wedding.", "They put a lot of effort into planning their wedding.", "They put lots of effort into planning their wedding."], why: "Effort không đếm được → a great deal of / a large amount of (number of chỉ đi với danh từ đếm được).", key: "a great number of → a great deal of" },
+      { q: "A amount of people were waiting in line at the store.", a: ["A large number of people were waiting in line at the store.", "A great number of people were waiting in line at the store.", "A lot of people were waiting in line at the store.", "Plenty of people were waiting in line at the store.", "Lots of people were waiting in line at the store."], why: "People đếm được số nhiều → a large / great number of. Ngoài ra không dùng “A amount”.", key: "A amount of → A large number of" }
+    ]
+  }
+];
+
+const CD_META = {
+  4: { vi: "Danh động từ và động từ nguyên mẫu", en: "Gerunds and Infinitives" },
+  5: { vi: "Giới từ", en: "Prepositions" },
+  6: { vi: "Lượng từ", en: "Quantifiers" }
+};
+
+</script>
+<script>
+(function () {
+  "use strict";
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const app = $("#app");
+
+  /* ---------- lưu trữ (an toàn khi trình duyệt chặn localStorage) ---------- */
+  const mem = {};
+  const store = {
+    get(k, d) {
+      if (k in mem) return mem[k];
+      try { const v = localStorage.getItem(k); if (v !== null) { mem[k] = JSON.parse(v); return mem[k]; } } catch (e) {}
+      return d;
+    },
+    set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+
+  /* ---------- chuẩn hoá chuỗi khi chấm ---------- */
+  const norm = (s) => String(s || "").toLowerCase().replace(/[’‘`]/g, "'").replace(/[“”"]/g, "").replace(/[.,;!?]/g, " ").replace(/\s+/g, " ").trim();
+  const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  /* ---------- dữ liệu dẫn xuất ---------- */
+  const exItems = (ex) => {
+    if (ex.type === "passage") return ex.errors.map((e, i) => Object.assign({}, e, { id: ex.id + ":" + i, type: "perr", no: i + 1, exId: ex.id }));
+    return ex.items.map((it, i) => Object.assign({}, it, { id: ex.id + ":" + i, type: ex.type, cols: ex.cols, exId: ex.id, no: i + 1, cd: ex.cd, exTitle: ex.title }));
+  };
+  const ITEM_INDEX = {};
+  EXERCISES.forEach((ex) => { if (ex.type !== "passage" && ex.type !== "classify") exItems(ex).forEach((it) => (ITEM_INDEX[it.id] = it)); });
+  const totalQuestions = EXERCISES.reduce((n, ex) => n + (ex.type === "passage" ? ex.errors.length : ex.items.length), 0);
+  const totalWords = VOCAB.reduce((n, v) => n + v.items.length, 0);
+  const totalSections = GRAMMAR.reduce((n, g) => n + g.sections.length, 0);
+
+  /* ---------- trạng thái ---------- */
+  const S = {
+    vocab: { cat: "v4a", mode: "list", q: "", order: [], i: 0, flip: false, quiz: null },
+    grammar: { cd: 4 },
+    practice: { cd: 4, run: null }
+  };
+
+  /* ---------- Router ---------- */
+  const ROUTES = { home: renderHome, vocab: renderVocab, grammar: renderGrammar, practice: renderPractice, progress: renderProgress };
+  const current = () => { const h = (location.hash || "#home").slice(1); return ROUTES[h] ? h : "home"; };
+  function route(noScroll) {
+    const r = current();
+    $$("#nav a").forEach((a) => a.classList.toggle("on", a.dataset.r === r));
+    ROUTES[r]();
+    if (!noScroll) window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", () => route());
+
+  /* ======================================================= HOME */
+  function renderHome() {
+    const sc = store.get("e8_scores", {});
+    const done = EXERCISES.filter((e) => sc[e.id]).length;
+    app.innerHTML = `
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Theo sách Global Success · Lớp 8</div>
+        <h1>Bồi dưỡng học sinh giỏi <span>Tiếng Anh 8</span></h1>
+        <hr class="rule">
+        <p class="lead">Học từ vựng, ôn ngữ pháp theo từng chuyên đề, rồi làm bài tập. Bài nộp được chấm ngay, sai câu nào có đáp án và giải thích câu đó.</p>
+        <div class="row"><a class="btn" href="#practice">Bắt đầu luyện tập</a><a class="btn ghost" href="#grammar">Xem ngữ pháp</a></div>
+      </div>
+      <div class="card hero-card">
+        <div class="stats">
+          <div class="stat"><b>${totalWords}</b><span>mục từ vựng</span></div>
+          <div class="stat"><b>${EXERCISES.length}</b><span>bài tập</span></div>
+          <div class="stat"><b>${totalQuestions}</b><span>câu hỏi</span></div>
+        </div>
+        <hr class="rule" style="width:100%">
+        <p class="muted" style="margin:0">Bạn đã làm <b style="color:var(--gold-2)">${done}/${EXERCISES.length}</b> bài tập.</p>
+        <div class="prog"><i style="width:${Math.round((done / EXERCISES.length) * 100)}%"></i></div>
+      </div>
+    </section>
+
+    <div class="eyebrow">Ba chuyên đề trong sách</div>
+    <div class="cd-grid">
+      ${[4, 5, 6].map((cd) => {
+        const wc = VOCAB.filter((v) => v.cd === cd).reduce((n, v) => n + v.items.length, 0);
+        const ex = EXERCISES.filter((e) => e.cd === cd);
+        const q = ex.reduce((n, e) => n + (e.type === "passage" ? e.errors.length : e.items.length), 0);
+        return `<div class="card cd-card"><span class="num">${cd}</span><small>Chuyên đề ${cd}</small><h3>${CD_META[cd].vi}</h3><p>${CD_META[cd].en}</p><p>${wc} mục từ vựng · ${ex.length} bài tập · ${q} câu</p>
+          <div class="row"><button class="btn sm" data-act="goGrammar" data-cd="${cd}">Ngữ pháp</button><button class="btn sm ghost" data-act="goPractice" data-cd="${cd}">Làm bài</button></div></div>`;
+      }).join("")}
+    </div>
+
+    <div class="eyebrow">Cách học gợi ý</div>
+    <div class="steps">
+      <div class="step"><b>1. Từ vựng</b><span>Xem danh sách, lật thẻ ghi nhớ, rồi tự kiểm tra.</span></div>
+      <div class="step"><b>2. Ngữ pháp</b><span>Đọc công thức, ví dụ và các chú ý của từng chuyên đề.</span></div>
+      <div class="step"><b>3. Luyện tập</b><span>Làm hết bài rồi nhấn nộp để được chấm.</span></div>
+      <div class="step"><b>4. Ôn câu sai</b><span>Làm lại riêng các câu đã sai và thử thách tổng hợp.</span></div>
+    </div>
+    <p class="scope">Phạm vi: các trang của sách được cung cấp gồm Chuyên đề 4 (trang 18–19, 22–27), Chuyên đề 5 (trang 28–31) và Chuyên đề 6 (trang 32–35). Phần đáp án của Bài 4 và Bài 5 chuyên đề 6 bị cắt khỏi bản scan, nên đáp án hai bài này do hệ thống bổ sung và có ghi chú ngay trong bài.</p>`;
+  }
+
+  /* ======================================================= VOCAB */
+  const vocabPool = (cat) => (cat === "all" ? VOCAB.flatMap((v) => v.items.map((i) => ({ en: i[0], vi: i[1], cat: v.id }))) : VOCAB.find((v) => v.id === cat).items.map((i) => ({ en: i[0], vi: i[1], cat })));
+  const known = () => store.get("e8_known", {});
+  const kKey = (w) => w.cat + "|" + w.en;
+
+  function renderVocab() {
+    const V = S.vocab;
+    const pool = vocabPool(V.cat);
+    const kn = known();
+    const knCount = pool.filter((w) => kn[kKey(w)]).length;
+    const cur = V.cat === "all" ? { name: "Tất cả", hint: "Toàn bộ từ vựng của ba chuyên đề" } : VOCAB.find((v) => v.id === V.cat);
+    let body = "";
+    if (V.mode === "list") body = `<div class="vtools"><input class="search" id="vsearch" placeholder="Tìm từ hoặc nghĩa…" value="${esc(V.q)}" aria-label="Tìm từ vựng"><span class="vcount" id="vcount"></span></div><div class="vgrid" id="vgrid"></div>`;
+    if (V.mode === "cards") body = cardsHTML(pool, kn);
+    if (V.mode === "quiz") body = quizHTML();
+    app.innerHTML = `
+      <div class="eyebrow">Vocabulary</div><h2>Từ vựng theo chuyên đề</h2><hr class="rule">
+      <div class="tabs" role="tablist">
+        ${[["all", "Tất cả", totalWords]].concat(VOCAB.map((v) => [v.id, "CĐ" + v.cd + " · " + v.name, v.items.length])).map((t) => `<button class="tab ${V.cat === t[0] ? "on" : ""}" data-act="vcat" data-id="${t[0]}">${esc(t[1])}<small>${t[2]}</small></button>`).join("")}
+      </div>
+      <div class="card">
+        <div class="vtools"><div><h3 style="margin-bottom:2px">${esc(cur.name)}</h3><div class="muted" style="font-size:.9rem">${esc(cur.hint)} · đã thuộc ${knCount}/${pool.length}</div></div>
+          <div class="seg"><button class="${V.mode === "list" ? "on" : ""}" data-act="vmode" data-m="list">Danh sách</button><button class="${V.mode === "cards" ? "on" : ""}" data-act="vmode" data-m="cards">Thẻ ghi nhớ</button><button class="${V.mode === "quiz" ? "on" : ""}" data-act="vmode" data-m="quiz">Kiểm tra</button></div></div>
+        ${body}
+      </div>`;
+    if (V.mode === "list") fillVgrid();
+  }
+  function fillVgrid() {
+    const V = S.vocab, kn = known(), q = V.q.trim().toLowerCase();
+    const list = vocabPool(V.cat).filter((w) => !q || w.en.toLowerCase().includes(q) || w.vi.toLowerCase().includes(q));
+    $("#vgrid").innerHTML = list.map((w) => `<div class="vitem ${kn[kKey(w)] ? "known" : ""}"><b>${esc(w.en)}</b><span>${esc(w.vi)}</span></div>`).join("") || `<p class="muted">Không tìm thấy từ phù hợp.</p>`;
+    $("#vcount").textContent = list.length + " mục";
+  }
+  function ensureOrder(pool) {
+    const V = S.vocab;
+    if (V.order.length !== pool.length) { V.order = pool.map((_, i) => i); V.i = 0; V.flip = false; }
+  }
+  function cardsHTML(pool, kn) {
+    const V = S.vocab; ensureOrder(pool);
+    const w = pool[V.order[V.i]];
+    const isK = !!kn[kKey(w)];
+    return `<div class="flash-wrap">
+      <div class="vcount" style="text-align:center">Thẻ ${V.i + 1}/${pool.length} · bấm vào thẻ hoặc phím Space để lật</div>
+      <div class="prog"><i style="width:${((V.i + 1) / pool.length) * 100}%"></i></div>
+      <div class="flash ${V.flip ? "flip" : ""}" data-act="flip" tabindex="0" role="button" aria-label="Lật thẻ">
+        <div class="flash-in"><div class="face"><div><div class="w">${esc(w.en)}</div><small>Tiếng Anh</small></div></div><div class="face back"><div><div class="t">${esc(w.vi)}</div><small>${esc(w.en)}</small></div></div></div>
+      </div>
+      <div class="flash-bar">
+        <button class="btn ghost sm" data-act="cprev">← Trước</button>
+        <button class="btn sm ${isK ? "ghost" : ""}" data-act="cknow">${isK ? "Bỏ đánh dấu thuộc" : "Đã thuộc ✓"}</button>
+        <button class="btn ghost sm" data-act="cnext">Sau →</button>
+        <button class="btn ghost sm" data-act="cshuf">Xáo trộn</button>
+      </div></div>`;
+  }
+  function buildQuiz() {
+    const V = S.vocab, pool = vocabPool(V.cat), all = vocabPool("all");
+    const picks = shuffle(pool).slice(0, Math.min(10, pool.length));
+    const qs = picks.map((w) => {
+      const same = pool.filter((x) => x.vi !== w.vi);
+      const src = same.length >= 3 ? same : all.filter((x) => x.vi !== w.vi);
+      const ds = shuffle(Array.from(new Set(src.map((x) => x.vi)))).slice(0, 3);
+      const opts = shuffle(ds.concat([w.vi]));
+      return { en: w.en, vi: w.vi, opts, ai: opts.indexOf(w.vi) };
+    });
+    V.quiz = { qs, i: 0, score: 0, picked: null, wrong: [] };
+  }
+  function quizHTML() {
+    const V = S.vocab;
+    if (!V.quiz) return `<div style="text-align:center;padding:30px 10px"><p class="muted">Chọn nghĩa đúng của 10 từ ngẫu nhiên trong mục đang chọn.</p><button class="btn" data-act="qstart">Bắt đầu kiểm tra</button></div>`;
+    const Q = V.quiz;
+    if (Q.i >= Q.qs.length) {
+      return `<div class="vq" style="text-align:center"><h3>Kết quả: ${Q.score}/${Q.qs.length}</h3><p class="muted">${Q.score === Q.qs.length ? "Tuyệt vời, bạn nhớ hết các từ này." : "Xem lại các từ bạn chọn sai bên dưới."}</p>
+        ${Q.wrong.length ? `<div class="vgrid" style="text-align:left;margin:16px 0">${Q.wrong.map((w) => `<div class="vitem"><b>${esc(w.en)}</b><span>${esc(w.vi)}</span></div>`).join("")}</div>` : ""}
+        <button class="btn" data-act="qstart">Kiểm tra lại</button></div>`;
+    }
+    const q = Q.qs[Q.i];
+    return `<div class="vq"><div class="vcount">Câu ${Q.i + 1}/${Q.qs.length} · Điểm ${Q.score}</div><div class="prog"><i style="width:${(Q.i / Q.qs.length) * 100}%"></i></div>
+      <div class="qword">${esc(q.en)}</div><div class="opts" style="grid-template-columns:1fr">
+      ${q.opts.map((o, i) => { let c = ""; if (Q.picked !== null) { if (i === q.ai) c = "right"; else if (i === Q.picked) c = "miss"; c += " locked"; } return `<button class="opt ${c}" data-act="qpick" data-i="${i}" style="text-align:left;color:inherit;font:inherit"><span class="l">${L[i]}</span><span>${esc(o)}</span></button>`; }).join("")}</div>
+      ${Q.picked !== null ? `<div style="margin-top:16px"><button class="btn" data-act="qnext">${Q.i + 1 === Q.qs.length ? "Xem kết quả" : "Câu tiếp theo →"}</button></div>` : ""}</div>`;
+  }
+
+  /* ======================================================= GRAMMAR */
+  function renderGrammar() {
+    const cd = S.grammar.cd, g = GRAMMAR.find((x) => x.cd === cd);
+    app.innerHTML = `
+      <div class="eyebrow">Grammar</div><h2>Ngữ pháp theo chuyên đề</h2><hr class="rule">
+      <div class="tabs">${GRAMMAR.map((x) => `<button class="tab ${x.cd === cd ? "on" : ""}" data-act="gcd" data-cd="${x.cd}">Chuyên đề ${x.cd} · ${x.vi}</button>`).join("")}</div>
+      <div class="g-layout">
+        <nav class="toc" aria-label="Mục lục">${g.sections.map((s) => `<button class="tocb" data-act="gjump" data-id="${s.id}">${s.title}</button>`).join("")}</nav>
+        <div>
+          <div class="card gsec"><div class="eyebrow">Chuyên đề ${g.cd} · ${g.en}</div><h3 style="font-size:2rem">${g.vi}</h3><p class="muted" style="margin-top:8px">${g.intro}</p></div>
+          ${g.sections.map((s) => `<section class="card gsec" id="${s.id}"><h3>${s.title}</h3>${s.html}</section>`).join("")}
+          <div class="card row" style="justify-content:space-between"><div><h3>Đã đọc xong chuyên đề ${g.cd}?</h3><span class="muted">Làm bài tập để kiểm tra mức độ nhớ.</span></div><button class="btn" data-act="goPractice" data-cd="${g.cd}">Luyện tập chuyên đề ${g.cd}</button></div>
+        </div>
+      </div>`;
+  }
+
+  /* ======================================================= PRACTICE */
+  const typeLabel = { classify: "Phân loại", fill: "Điền từ", mcq: "Trắc nghiệm", pick: "Chọn đáp án", fix: "Sửa lỗi", passage: "Sửa đoạn văn" };
+  function renderPractice() {
+    const P = S.practice;
+    if (P.run) return renderRun();
+    const sc = store.get("e8_scores", {});
+    const wrong = store.get("e8_wrong", []).filter((id) => ITEM_INDEX[id]);
+    const list = EXERCISES.filter((e) => e.cd === P.cd);
+    app.innerHTML = `
+      <div class="eyebrow">Practice</div><h2>Luyện tập và chấm bài</h2><hr class="rule">
+      <div class="special">
+        <div class="card"><h3>Thử thách tổng hợp</h3><p>20 câu ngẫu nhiên từ cả ba chuyên đề. Phù hợp để tự kiểm tra trước buổi thi.</p>${sc.mix ? `<p>Điểm cao nhất: <b style="color:var(--ok)">${sc.mix.best}%</b></p>` : ""}<button class="btn" data-act="startMix">Bắt đầu 20 câu</button></div>
+        <div class="card"><h3>Ôn lại câu sai</h3><p>${wrong.length ? `Bạn đang có <b style="color:var(--gold-2)">${wrong.length}</b> câu đã làm sai. Làm lại để xóa chúng khỏi danh sách.` : "Chưa có câu sai nào được ghi lại. Làm bài tập trước, các câu sai sẽ xuất hiện ở đây."}</p><button class="btn ${wrong.length ? "" : "ghost"}" data-act="startReview" ${wrong.length ? "" : "disabled"}>Ôn ${wrong.length} câu sai</button></div>
+      </div>
+      <div class="tabs">${[4, 5, 6].map((cd) => `<button class="tab ${cd === P.cd ? "on" : ""}" data-act="pcd" data-cd="${cd}">Chuyên đề ${cd} · ${CD_META[cd].vi}</button>`).join("")}</div>
+      <div class="exlist">
+        ${list.map((e) => {
+          const n = e.type === "passage" ? e.errors.length : e.items.length, s = sc[e.id];
+          return `<button class="card excard" data-act="openEx" data-id="${e.id}"><span class="tag">${typeLabel[e.type]} · ${n} ${e.type === "passage" ? "lỗi" : "câu"}</span><h4>${e.title}</h4><p>${esc(e.instr.split(". ")[0].replace(/\.$/, ""))}</p><div class="best">${s ? `Điểm cao nhất <b>${s.best}%</b> · đã làm ${s.n} lần` : "Chưa làm"}</div></button>`;
+        }).join("")}
+      </div>`;
+  }
+
+  function makeRun(kind, ex) {
+    if (kind === "ex") {
+      return { kind, ex, exId: ex.id, cd: ex.cd, title: "Chuyên đề " + ex.cd + " · " + ex.title, instr: ex.instr, note: ex.note, items: exItems(ex), passage: ex.type === "passage" ? ex : null, graded: false, answers: {}, results: {}, onlyWrong: false };
+    }
+    let items;
+    if (kind === "mix") {
+      const pool = Object.values(ITEM_INDEX).filter((it) => it.type === "mcq" || it.type === "pick" || it.type === "fill");
+      items = shuffle(pool).slice(0, 20);
+    } else {
+      const ids = store.get("e8_wrong", []).filter((id) => ITEM_INDEX[id]);
+      items = ids.map((id) => ITEM_INDEX[id]);
+    }
+    return { kind, exId: kind, title: kind === "mix" ? "Thử thách tổng hợp" : "Ôn lại câu sai", instr: kind === "mix" ? "20 câu ngẫu nhiên từ ba chuyên đề. Chọn hoặc điền đáp án rồi nhấn nộp bài." : "Làm lại các câu bạn từng sai. Câu đúng sẽ được xóa khỏi danh sách.", items, graded: false, answers: {}, results: {}, onlyWrong: false };
+  }
+
+  function itemHTML(it, run, n) {
+    const g = run.graded, r = run.results[it.id], a = run.answers[it.id];
+    const cls = g ? (r.ok ? "good" : "wrong") : "";
+    const src = run.kind !== "ex" ? `<div class="muted" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase">CĐ${it.cd} · ${it.exTitle}</div>` : "";
+    const dis = g ? "disabled" : "";
+    const optHTML = (o, i, letters) => {
+      let c = "opt";
+      const picked = a !== undefined && a !== "" && +a === i;
+      if (g) { c += " locked"; if (i === it.a || (r.ok && picked)) c += " right"; else if (picked) c += " miss"; }
+      else if (picked) c += " sel";
+      return `<label class="${c}"><input type="radio" name="r_${it.id}" value="${i}" ${picked ? "checked" : ""} ${dis}>${letters ? `<span class="l">${L[i]}</span>` : ""}<span>${esc(o)}</span></label>`;
+    };
+    let main = "";
+    if (it.type === "classify") {
+      main = `<div class="pills">${it.cols.map((c) => { let k = "opt"; const picked = a === c; if (g) { k += " locked"; if (c === it.a) k += " right"; else if (picked) k += " miss"; } else if (picked) k += " sel"; return `<label class="${k}"><input type="radio" name="r_${it.id}" value="${esc(c)}" ${picked ? "checked" : ""} ${dis}><span>${esc(c)}</span></label>`; }).join("")}</div>`;
+      return `<div class="q crow ${cls}"><span class="n">${n}</span><div class="qb" style="display:flex;gap:18px;flex-wrap:wrap;align-items:center"><span class="w" style="font-family:var(--display);font-size:1.5rem;color:var(--gold-2);font-weight:700;min-width:120px">${esc(it.t)}</span>${main}</div>${""}</div>${g ? fbHTML(it, r, true) : ""}`;
+    }
+    if (it.type === "fill") {
+      const parts = it.q.split("___");
+      main = `<p class="qt">${esc(parts[0])}<input class="blank" data-id="${it.id}" value="${esc(a || "")}" ${dis} autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Câu ${n}">${esc(parts[1] || "")}</p>`;
+    } else if (it.type === "mcq" || it.type === "pick") {
+      const parts = it.q.split("___");
+      const chosen = a !== undefined && a !== "" ? it.o[+a] : "";
+      main = `<p class="qt">${esc(parts[0])}<span class="gap" data-gap="${it.id}">${chosen ? esc(chosen) : "&nbsp;"}</span>${esc(parts[1] || "")}</p><div class="${it.type === "mcq" ? "opts" : "pills"}">${it.o.map((o, i) => optHTML(o, i, it.type === "mcq")).join("")}</div>`;
+    } else if (it.type === "fix") {
+      main = `<p class="qt" style="margin-bottom:6px">Sửa câu sau nếu có lỗi:</p><input class="fixin" data-id="${it.id}" value="${esc(a !== undefined ? a : it.q)}" ${dis} spellcheck="false" aria-label="Câu ${n}">`;
+    }
+    return `<div class="q ${cls}"><span class="n">${n}</span><div class="qb">${src}${main}${g ? fbHTML(it, r) : ""}</div></div>`;
+  }
+  function fbHTML(it, r, outside) {
+    const head = r.ok ? (r.altUsed ? "✓ Chính xác (đáp án khác cũng được chấp nhận)" : "✓ Chính xác") : r.unanswered ? "✗ Chưa trả lời" : "✗ Chưa đúng";
+    let lines = "";
+    if (!r.ok) {
+      if (it.type === "fix") lines += `<p>Bạn viết: <i>${esc(r.shown)}</i></p><p>Câu đúng: <b>${esc(r.correct)}</b></p>`;
+      else lines += `<p>Đáp án đúng: <b>${esc(r.correct)}</b>${r.shown ? ` · Bạn chọn: ${esc(r.shown)}` : ""}</p>`;
+    } else if (r.altUsed) lines += `<p>Đáp án trong sách: <b>${esc(r.correct)}</b></p>`;
+    if (it.type === "fix") lines += `<p>Lỗi sai: <b>${esc(it.key)}</b></p>`;
+    const box = `<div class="fb ${r.ok ? "ok" : "bad"}"><div class="fbh">${head}</div>${lines}<p class="why">${esc(it.why)}</p></div>`;
+    return outside ? `<div style="padding:0 0 14px 44px;border-bottom:1px solid rgba(217,180,106,.14)">${box}</div>` : box;
+  }
+
+  function renderRun() {
+    const run = S.practice.run, g = run.graded;
+    const n = run.items.length;
+    let correct = 0; if (g) correct = run.items.filter((it) => run.results[it.id].ok).length;
+    const pct = g ? Math.round((correct / n) * 100) : 0;
+    let verdict = "";
+    if (g) verdict = pct >= 90 ? "Xuất sắc" : pct >= 75 ? "Giỏi" : pct >= 50 ? "Khá, cần ôn thêm" : "Cần ôn lại lý thuyết";
+    const circ = 2 * Math.PI * 52;
+    const score = g ? `<div class="card score"><div class="ring"><svg width="118" height="118" viewBox="0 0 118 118"><circle cx="59" cy="59" r="52" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="8"/><circle cx="59" cy="59" r="52" fill="none" stroke="${pct >= 75 ? "var(--ok)" : pct >= 50 ? "var(--gold)" : "var(--bad)"}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${(pct / 100) * circ} ${circ}"/></svg><div class="pct">${pct}%</div></div>
+      <div><h3>${verdict}</h3><p>Đúng ${correct}/${n} ${run.passage ? "lỗi" : "câu"}. ${pct < 75 && run.cd ? "Đọc lại phần ngữ pháp của chuyên đề rồi làm lại để cải thiện." : "Xem giải thích từng câu bên dưới."}</p>
+      <div class="row"><button class="btn sm" data-act="retry">Làm lại bài này</button>${run.cd ? `<button class="btn sm ghost" data-act="goGrammar" data-cd="${run.cd}">Xem ngữ pháp</button>` : ""}<button class="btn sm ghost" data-act="toggleWrong">${run.onlyWrong ? "Hiện tất cả câu" : "Chỉ hiện câu sai"}</button><button class="btn sm ghost" data-act="backList">Về danh sách bài</button></div></div></div>` : "";
+
+    let body = "";
+    if (run.passage) {
+      const t = run.answers.passage !== undefined ? run.answers.passage : run.passage.text;
+      body = `<div class="card"><textarea class="area" id="area" ${g ? "disabled" : ""} spellcheck="false" aria-label="Đoạn văn cần sửa">${esc(t)}</textarea>
+        ${g ? `<div class="pass-res">${run.items.map((it, i) => { const r = run.results[it.id]; return `<div class="fb ${r.ok ? "ok" : "bad"}"><div class="fbh">${r.ok ? "✓" : "✗"} Lỗi ${i + 1}: ${esc(it.wrong)} → ${esc(it.right)}</div><p class="why">${esc(it.why)}</p></div>`; }).join("")}</div>` : `<p class="muted" style="margin:10px 0 0;font-size:.88rem">Đoạn văn có 6 lỗi giới từ. Sửa trực tiếp trong khung rồi nhấn nộp bài.</p>`}</div>`;
+    } else {
+      const items = run.items.map((it, i) => ({ it, i }));
+      const shown = g && run.onlyWrong ? items.filter((x) => !run.results[x.it.id].ok) : items;
+      body = `<div class="card" style="padding-top:6px;padding-bottom:6px">${shown.length ? shown.map((x) => itemHTML(x.it, run, x.i + 1)).join("") : `<p style="padding:20px 0">Không có câu sai nào. Bạn làm đúng hết.</p>`}</div>`;
+    }
+    app.innerHTML = `
+      <div class="runhead"><div><div class="eyebrow">${run.kind === "ex" ? "Bài tập" : "Luyện tập"}</div><h2>${esc(run.title)}</h2></div><button class="btn ghost sm" data-act="backList">← Danh sách bài</button></div>
+      <div class="instr">${esc(run.instr)}</div>
+      ${run.note ? `<div class="note-box">${esc(run.note)}</div>` : ""}
+      ${score}${body}
+      ${g ? "" : `<div class="sticky-sub"><button class="btn" data-act="submit">Nộp bài và chấm điểm</button><span class="muted" style="font-size:.88rem">Bạn có thể nộp khi chưa làm hết, câu bỏ trống tính là sai.</span></div>`}`;
+  }
+
+  function collect(run) {
+    if (run.passage) { run.answers.passage = $("#area").value; return; }
+    run.items.forEach((it) => {
+      if (it.type === "fill" || it.type === "fix") { const el = $('[data-id="' + it.id + '"]'); run.answers[it.id] = el ? el.value : ""; }
+      else { const el = $('input[name="r_' + it.id + '"]:checked'); run.answers[it.id] = el ? el.value : ""; }
+    });
+  }
+  function gradeItem(it, val) {
+    const v = val === undefined ? "" : val;
+    if (it.type === "classify") return { ok: v === it.a, unanswered: v === "", shown: v, correct: it.a };
+    if (it.type === "fill") return { ok: it.a.some((x) => norm(x) === norm(v)), unanswered: norm(v) === "", shown: v, correct: it.a[0] };
+    if (it.type === "fix") { const ok = it.a.some((x) => norm(x) === norm(v)); return { ok, unanswered: false, shown: v, correct: it.a[0] }; }
+    const un = v === "", i = un ? -1 : +v;
+    const alt = (it.alt || []).includes(i);
+    return { ok: i === it.a || alt, altUsed: alt && i !== it.a, unanswered: un, shown: un ? "" : it.o[i], correct: it.o[it.a] };
+  }
+  function submitRun() {
+    const run = S.practice.run;
+    collect(run);
+    if (run.passage) {
+      const t = norm(run.answers.passage);
+      run.items.forEach((it) => { run.results[it.id] = { ok: !!it.test(t) }; });
+    } else run.items.forEach((it) => { run.results[it.id] = gradeItem(it, run.answers[it.id]); });
+    run.graded = true;
+    const total = run.items.length, c = run.items.filter((it) => run.results[it.id].ok).length;
+    const sc = store.get("e8_scores", {}), key = run.exId, o = sc[key] || { best: 0, n: 0 }, pct = Math.round((c / total) * 100);
+    sc[key] = { best: Math.max(o.best, pct), last: pct, n: o.n + 1, c, t: total, at: Date.now() };
+    store.set("e8_scores", sc);
+    let wrong = new Set(store.get("e8_wrong", []));
+    run.items.forEach((it) => { if (ITEM_INDEX[it.id]) { if (run.results[it.id].ok) wrong.delete(it.id); else wrong.add(it.id); } });
+    store.set("e8_wrong", Array.from(wrong));
+    renderRun(); window.scrollTo(0, 0);
+  }
+
+  /* ======================================================= PROGRESS */
+  function renderProgress() {
+    const sc = store.get("e8_scores", {});
+    const done = EXERCISES.filter((e) => sc[e.id]);
+    const avg = done.length ? Math.round(done.reduce((s, e) => s + sc[e.id].best, 0) / done.length) : 0;
+    const kn = Object.keys(known()).length;
+    const wrong = store.get("e8_wrong", []).filter((id) => ITEM_INDEX[id]).length;
+    app.innerHTML = `
+      <div class="eyebrow">Progress</div><h2>Tiến độ học tập</h2><hr class="rule">
+      <div class="card hero-card" style="margin-bottom:20px"><div class="stats">
+        <div class="stat"><b>${done.length}/${EXERCISES.length}</b><span>bài đã làm</span></div>
+        <div class="stat"><b>${done.length ? avg + "%" : "–"}</b><span>điểm cao nhất trung bình</span></div>
+        <div class="stat"><b>${kn}/${totalWords}</b><span>từ đã thuộc</span></div></div></div>
+      <div class="card" style="margin-bottom:20px"><h3 style="margin-bottom:14px">Theo chuyên đề</h3><div class="bars">
+        ${[4, 5, 6].map((cd) => { const ex = EXERCISES.filter((e) => e.cd === cd), d = ex.filter((e) => sc[e.id]); const a = d.length ? Math.round(d.reduce((s, e) => s + sc[e.id].best, 0) / d.length) : 0; return `<div><div class="bar-l"><span>Chuyên đề ${cd} · ${CD_META[cd].vi}</span><span class="muted">${d.length}/${ex.length} bài · ${d.length ? a + "%" : "chưa làm"}</span></div><div class="prog"><i style="width:${(d.length / ex.length) * 100}%"></i></div></div>`; }).join("")}</div></div>
+      <div class="card" style="margin-bottom:20px"><h3 style="margin-bottom:10px">Kết quả từng bài</h3><div class="tscroll"><table class="ptable"><thead><tr><th>Bài</th><th>Dạng</th><th>Lần gần nhất</th><th>Cao nhất</th><th>Số lần</th></tr></thead><tbody>
+        ${EXERCISES.map((e) => { const s = sc[e.id]; return `<tr><td>CĐ${e.cd} · ${e.title}</td><td>${typeLabel[e.type]}</td><td>${s ? s.last + "%" : "–"}</td><td>${s ? "<b style='color:var(--ok)'>" + s.best + "%</b>" : "–"}</td><td>${s ? s.n : 0}</td></tr>`; }).join("")}
+      </tbody></table></div></div>
+      <div class="row"><button class="btn" data-act="startReview" ${wrong ? "" : "disabled"}>Ôn lại ${wrong} câu sai</button><button class="btn ghost" data-act="resetAll" id="resetBtn">Xóa toàn bộ tiến độ</button></div>`;
+  }
+
+  /* ======================================================= SỰ KIỆN */
+  const A = {
+    goGrammar(t) { S.grammar.cd = +t.dataset.cd; location.hash === "#grammar" ? route() : (location.hash = "#grammar"); },
+    goPractice(t) { S.practice.cd = +t.dataset.cd; S.practice.run = null; location.hash === "#practice" ? route() : (location.hash = "#practice"); },
+    vcat(t) { S.vocab.cat = t.dataset.id; S.vocab.order = []; S.vocab.quiz = null; S.vocab.q = ""; route(true); },
+    vmode(t) { S.vocab.mode = t.dataset.m; S.vocab.flip = false; if (t.dataset.m === "quiz") S.vocab.quiz = null; route(true); },
+    flip() { S.vocab.flip = !S.vocab.flip; const f = $(".flash"); if (f) f.classList.toggle("flip", S.vocab.flip); },
+    cnext() { const V = S.vocab; V.i = (V.i + 1) % V.order.length; V.flip = false; route(true); },
+    cprev() { const V = S.vocab; V.i = (V.i - 1 + V.order.length) % V.order.length; V.flip = false; route(true); },
+    cshuf() { const V = S.vocab; V.order = shuffle(V.order); V.i = 0; V.flip = false; route(true); },
+    cknow() { const V = S.vocab, w = vocabPool(V.cat)[V.order[V.i]], kn = Object.assign({}, known()); if (kn[kKey(w)]) delete kn[kKey(w)]; else kn[kKey(w)] = 1; store.set("e8_known", kn); if (kn[kKey(w)] && V.i < V.order.length - 1) { V.i++; V.flip = false; } route(true); },
+    qstart() { buildQuiz(); route(true); },
+    qpick(t) { const Q = S.vocab.quiz; if (Q.picked !== null) return; Q.picked = +t.dataset.i; const q = Q.qs[Q.i]; if (Q.picked === q.ai) Q.score++; else Q.wrong.push(q); route(true); },
+    qnext() { const Q = S.vocab.quiz; Q.i++; Q.picked = null; route(true); },
+    gcd(t) { S.grammar.cd = +t.dataset.cd; route(); },
+    gjump(t) { const el = document.getElementById(t.dataset.id); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); },
+    pcd(t) { S.practice.cd = +t.dataset.cd; route(true); },
+    openEx(t) { S.practice.run = makeRun("ex", EXERCISES.find((e) => e.id === t.dataset.id)); route(); },
+    startMix() { S.practice.run = makeRun("mix"); location.hash === "#practice" ? route() : (location.hash = "#practice"); },
+    startReview() { const r = makeRun("review"); if (!r.items.length) return; S.practice.run = r; location.hash === "#practice" ? route() : (location.hash = "#practice"); },
+    submit() { submitRun(); },
+    retry() { const r = S.practice.run; S.practice.run = r.kind === "ex" ? makeRun("ex", r.ex) : makeRun(r.kind); route(); },
+    backList() { S.practice.run = null; route(); },
+    toggleWrong() { S.practice.run.onlyWrong = !S.practice.run.onlyWrong; renderRun(); },
+    resetAll(t) {
+      if (!t.dataset.sure) { t.dataset.sure = "1"; t.textContent = "Nhấn lần nữa để xác nhận xóa"; return; }
+      ["e8_scores", "e8_wrong", "e8_known"].forEach((k) => store.set(k, k === "e8_wrong" ? [] : {}));
+      route(true);
+    }
+  };
+  const L = ["A", "B", "C", "D"];
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-act]");
+    if (t && A[t.dataset.act]) { e.preventDefault(); A[t.dataset.act](t, e); }
+  });
+  document.addEventListener("change", (e) => {
+    const inp = e.target;
+    if (inp.matches && inp.matches('.opt input[type="radio"]')) {
+      $$('input[name="' + inp.name + '"]').forEach((r) => r.closest(".opt").classList.toggle("sel", r.checked));
+      const id = inp.name.slice(2), gap = $('[data-gap="' + id + '"]');
+      if (gap) { const lab = inp.closest(".opt").querySelector("span:last-child"); gap.textContent = lab ? lab.textContent : ""; }
+    }
+  });
+  document.addEventListener("input", (e) => {
+    if (e.target.id === "vsearch") { S.vocab.q = e.target.value; fillVgrid(); }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (current() !== "vocab" || S.vocab.mode !== "cards") return;
+    if (e.target.matches && e.target.matches("input,textarea")) return;
+    if (e.key === "ArrowRight") A.cnext();
+    else if (e.key === "ArrowLeft") A.cprev();
+    else if (e.key === " " || e.key === "Enter") { if (e.target.closest && e.target.closest("button,a")) return; e.preventDefault(); A.flip(); }
+  });
+
+  route(true);
+})();
+
+</script>
+</body>
+</html>
